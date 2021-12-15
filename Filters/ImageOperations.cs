@@ -106,5 +106,12 @@ namespace Algorithms_Project.Filters
             }
             PicBox.Image = ImageBMP;
         }
+
+        public static byte[] constructWindowOfPixels(byte[,] imageMatrix, int x, int y, int windowSize)
+        {
+            byte[] pixels = new byte[windowSize * windowSize];
+
+            return pixels;
+        }
     }
 }

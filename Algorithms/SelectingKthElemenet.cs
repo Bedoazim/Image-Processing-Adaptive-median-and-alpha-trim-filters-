@@ -6,7 +6,25 @@ using System.Threading.Tasks;
 
 namespace Algorithms_Project.Algorithms
 {
-    internal class Class1
+    class SelectingKthElemenet
     {
+        public static byte[] smallest(byte[] pixels,int k)
+        {
+
+
+
+            return pixels;
+        }
+
+        public static byte[] largest(byte[] pixels,int k)
+        {
+
+
+
+            return pixels;
+        }
+
+
     }
+
 }
