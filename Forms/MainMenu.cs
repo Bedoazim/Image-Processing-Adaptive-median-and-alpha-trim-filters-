@@ -37,8 +37,59 @@ namespace Algorithms_Project
         private void medianFilter_Click(object sender, EventArgs e)
         {
 
+            if (medianMaxWindowSize.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter the max window size!");
+            }
+            else if (medianCountingSort.Checked.Equals(medianQuickSort.Checked))
+            {
+                MessageBox.Show("Please select one sorting algorithm!");
+            }
+            else
+            {
+                int maxWindowSize=int.Parse(medianMaxWindowSize.Text);
+                ImageOperations.DisplayImage(Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize,medianCountingSort.Checked,ImageMatrix), pictureBox1);
+            }
+
         }
 
-        
+        private void meanFilter_Click(object sender, EventArgs e)
+        {
+            if (meanWindowSize.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter the window size!");
+            }
+            else if (meanTrimValue.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter the trim value!");
+            }
+            else if (meanCountingSort.Checked.Equals(meanSelectingKthElement.Checked))
+            {
+                MessageBox.Show("Please select one algorithm!");
+            }
+            else
+            {
+                int windowSize = int.Parse(meanWindowSize.Text);
+                int trimValue = int.Parse(meanTrimValue.Text);
+                ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, ImageMatrix), pictureBox1);
+            }
+
+        }
+
+        private void graph_Click(object sender, EventArgs e)
+        {
+            if (medianWindowGraph.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter the max window size for median filter!");
+            }
+            else if (meanWindowGraph.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter the max window size for mean filter!");
+            }
+            else
+            {
+
+            }
+        }
     }
 }

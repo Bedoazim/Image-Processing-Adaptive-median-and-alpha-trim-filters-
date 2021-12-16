@@ -11,7 +11,7 @@ namespace Algorithms_Project.Filters
     {
         private const int minWindowSize = 3;
 
-        public byte[,] ImageFiltering(int maxWindowSize, bool countSort,byte[,] imageMatrix)
+        public static byte[,] ImageFiltering(int maxWindowSize, bool countSort,byte[,] imageMatrix)
         {
             int width=imageMatrix.GetLength(0);
             int height=imageMatrix.GetLength(1);
@@ -44,7 +44,7 @@ namespace Algorithms_Project.Filters
             }
             return imageMatrix;
         }
-        private byte getMedianPixel(byte[] pixels)
+        private static byte getMedianPixel(byte[] pixels)
         {
             byte median;
             int med= pixels.Length / 2;
@@ -58,16 +58,16 @@ namespace Algorithms_Project.Filters
             }
             return median;
         }
-        private byte getMaxPixel(byte[] pixels)
+        private static byte getMaxPixel(byte[] pixels)
         {
             int last= pixels.Length-1;
             return pixels[last];
         }
-        private byte getMinPixel(byte[] pixels)
+        private static byte getMinPixel(byte[] pixels)
         {
             return pixels[0];
         }  
-        private bool isTrueMedian(byte[] pixels)
+        private static bool isTrueMedian(byte[] pixels)
         {
             int medianPixel = getMedianPixel(pixels);
             int minPixel = getMinPixel(pixels);
@@ -77,7 +77,7 @@ namespace Algorithms_Project.Filters
 
             return (diffBetweenMedianAndMax > 0 && diffBetweenMedianAndMin > 0);
         }
-        private bool isNoisyPixel(int pixel,byte[] pixels)
+        private static bool isNoisyPixel(int pixel,byte[] pixels)
         {
             byte minPixel = getMinPixel(pixels);
             byte maxPixel = getMaxPixel(pixels);
@@ -86,7 +86,7 @@ namespace Algorithms_Project.Filters
 
             return (diffBetweenCurrentPixelAndMaxPixel <= 0 && diffBetweenCurrentPixelAndMinPixel <= 0);
         }
-        private byte[] sortPixels(byte[] pixels,bool countSort)
+        private static byte[] sortPixels(byte[] pixels,bool countSort)
         {
             byte[] sortedPixels;
             if (countSort)

@@ -11,7 +11,7 @@ namespace Algorithms_Project.Filters
     class AlphaTrimMeanFilter
     {
 
-        public byte[,] ImageFiltering(int windowSize, int trimValue, bool countingSort, bool countSort, byte[,] imageMatrix)
+        public static byte[,] ImageFiltering(int windowSize, int trimValue, bool countingSort, byte[,] imageMatrix)
         {
             int width = imageMatrix.GetLength(0);
             int height = imageMatrix.GetLength(1);
@@ -31,7 +31,7 @@ namespace Algorithms_Project.Filters
 
             return imageMatrix;
         }
-        private byte[] removingTMaxAndMin(byte[] pixels, int trimValue, bool countingSort)
+        private static byte[] removingTMaxAndMin(byte[] pixels, int trimValue, bool countingSort)
         {
             byte[] remainingPixels=new byte[(pixels.Length)-(2*trimValue)];
             if (countingSort)
@@ -49,7 +49,7 @@ namespace Algorithms_Project.Filters
             }
             return remainingPixels;
         }
-        private byte getMeanOfPixels(byte[] pixels)
+        private static byte getMeanOfPixels(byte[] pixels)
         {
             byte meanOfPixels = 0;
             for (int i = 0; i < pixels.Length; i++)
