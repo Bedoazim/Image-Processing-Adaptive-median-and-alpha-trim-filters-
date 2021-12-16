@@ -105,7 +105,7 @@
             // medianMaxWindowSize
             // 
             this.medianMaxWindowSize.AccessibleName = "";
-            this.medianMaxWindowSize.Location = new System.Drawing.Point(200, 31);
+            this.medianMaxWindowSize.Location = new System.Drawing.Point(233, 30);
             this.medianMaxWindowSize.Name = "medianMaxWindowSize";
             this.medianMaxWindowSize.Size = new System.Drawing.Size(115, 22);
             this.medianMaxWindowSize.TabIndex = 5;
@@ -209,9 +209,9 @@
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(28, 432);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(280, 19);
+            this.label4.Size = new System.Drawing.Size(248, 19);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Max window size for median filter :";
+            this.label4.Text = "Window size for median filter :";
             // 
             // label5
             // 
@@ -219,14 +219,14 @@
             this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(28, 477);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(266, 19);
+            this.label5.Size = new System.Drawing.Size(234, 19);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Max window size for mean filter :";
+            this.label5.Text = "Window size for mean filter :";
             // 
             // medianWindowGraph
             // 
             this.medianWindowGraph.AccessibleName = "";
-            this.medianWindowGraph.Location = new System.Drawing.Point(321, 432);
+            this.medianWindowGraph.Location = new System.Drawing.Point(333, 429);
             this.medianWindowGraph.Name = "medianWindowGraph";
             this.medianWindowGraph.Size = new System.Drawing.Size(62, 22);
             this.medianWindowGraph.TabIndex = 18;
@@ -235,7 +235,7 @@
             // meanWindowGraph
             // 
             this.meanWindowGraph.AccessibleName = "";
-            this.meanWindowGraph.Location = new System.Drawing.Point(321, 477);
+            this.meanWindowGraph.Location = new System.Drawing.Point(333, 474);
             this.meanWindowGraph.Name = "meanWindowGraph";
             this.meanWindowGraph.Size = new System.Drawing.Size(62, 22);
             this.meanWindowGraph.TabIndex = 19;
