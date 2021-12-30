@@ -10,8 +10,8 @@ namespace Algorithms_Project.Algorithms
     {
         public static byte[] smallest(byte[] pixels,int k)
         {
-            int [] frequency= new int[pixels.Length];
-            byte[] selected = new byte[pixels.Length-k];
+            int [] frequency= new int[260];
+            byte[] selected = new byte[pixels.Length];
             int index = 0;
             byte minPixel = 255, maxPixel = 0;
 
@@ -22,7 +22,7 @@ namespace Algorithms_Project.Algorithms
 
             for (int i = 0; i < pixels.Length; i++)
             {
-                frequency[pixels[i]]++;
+                frequency[(int)pixels[i]]++;
             }
 
             for(byte i = minPixel; i <= maxPixel; i++)
@@ -51,9 +51,9 @@ namespace Algorithms_Project.Algorithms
 
         public static byte[] largest(byte[] pixels,int k)
         {
-            byte[] frequency = new byte[pixels.Length];
+            byte[] frequency = new byte[260];
             
-            byte[] selected = new byte[pixels.Length - k];
+            byte[] selected = new byte[pixels.Length];
             
             int index = 0;
 

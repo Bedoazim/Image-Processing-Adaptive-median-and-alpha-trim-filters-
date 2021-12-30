@@ -52,15 +52,15 @@ namespace Algorithms_Project.Filters
         }
         private static byte getMeanOfPixels(byte[] pixels)
         {
-            byte meanOfPixels = 0;
+            int meanOfPixels = 0;
             for (int i = 0; i < pixels.Length; i++)
             {
                 meanOfPixels += pixels[i];
             }
             
-            meanOfPixels /= (byte)pixels.Length;
+            meanOfPixels /= pixels.Length;
          
-            return meanOfPixels;
+            return (byte)meanOfPixels;
         }
     }
 }

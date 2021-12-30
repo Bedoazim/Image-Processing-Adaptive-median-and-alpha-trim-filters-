@@ -109,36 +109,73 @@ namespace Algorithms_Project.Filters
 
         public static byte[] constructWindowOfPixels(byte[,] imageMatrix, int x, int y, int windowSize)
         {
+            
             byte[] pixels = new byte[windowSize * windowSize];
 
-            int border = (windowSize - 1) / 2;
+            int border = (windowSize) / 2;
             int upper = x - border, lower = x + border, right = y + border, left = y - border;
-            int height = GetHeight(imageMatrix) - 1, width = GetWidth(imageMatrix) - 1, index = 0;
+            int index = 0, height = GetHeight(imageMatrix), width = GetWidth(imageMatrix); 
 
-            if (upper < 0)
-            {
-                lower += 0 - upper;
-            }
-            else if(lower > height)
-            {
-                upper += lower - height;
-            }
-            if (left < 0)
-            {
-                right += 0 - left;
-            }
-            else if (right > width)
-            {
-                left += right - width;
-            }
             for(int i = upper; i <= lower; i++)
             {
                 for(int j = left; j <= right; j++)
                 {
-                    pixels[index++] = imageMatrix[i, j];
+                    if (isValidPoint(i, j, height, width))  pixels[index++] = imageMatrix[i, j];
                 }
             }
-            return pixels;
+
+            byte[] windowOfPixels = new byte[index];
+
+            for(int i = 0; i < index; i++)
+            {
+                windowOfPixels[i] = pixels[i];
+            }
+
+            return windowOfPixels;
+
+            /*
+            byte[] pixels = new byte[windowSize * windowSize];
+
+            int border = (windowSize - 1) / 2;
+            int upper = x - border, lower = x + border, right = y + border, left = y - border;
+            int height = GetHeight(imageMatrix), width = GetWidth(imageMatrix), index = 0;
+
+            if (upper < 0)
+            {
+                lower += 0 - upper;
+                upper = 0;
+            }
+            else if (lower >= height)
+            {
+                upper -= lower - height;
+                lower = height - 1; 
+            }
+            if (left < 0)
+            {
+                right += 0 - left;
+                left = 0;
+            }
+            else if (right >= width)
+            {
+                left -= right - width;
+                right = width - 1;
+            }
+            for (int i = upper; i <= lower; i++)
+            {
+                for (int j = left; j <= right; j++)
+                {
+                    pixels[index] = imageMatrix[i, j];
+                    index++;
+                }
+            }
+            return pixels;*/
+
         }
+
+        private static bool isValidPoint(int x, int y,int height,int width)
+        {
+            return (x >= 0 && x < height && y >= 0 && y < width);
+        }
+
     }
 }

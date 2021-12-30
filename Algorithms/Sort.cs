@@ -56,32 +56,33 @@ namespace Algorithms_Project.Algorithms
             
             byte[] sortedPixels = new byte[pixels.Length];
          
-            int[] frequency=new int[256];
+            int[] frequency=new int[260];
 
             int index = 0;
-            
-            byte minPixel=255, maxPixel=0;
 
-            for (int i = minPixel; i <= maxPixel; i++)
-            {
-                frequency[i] = 0;
-            }
+            byte minPixel = 0, maxPixel = 255;
 
             for (int i = 0; i < pixels.Length; i++)
             {
-                frequency[pixels[i]]++;
+                frequency[(int)pixels[i]]++;
             
-                minPixel = Math.Min(pixels[i],minPixel);
-                
-                maxPixel = Math.Max(pixels[i],maxPixel);
             }
-            for(byte i = minPixel;i <= maxPixel; i++)
+            for(int i = minPixel;i <= maxPixel; i++)
             {
-                for(int j = 0; j < frequency[i]; j++)
-                {
-                    sortedPixels[index++] = i;
-                }
+               
+                    for (int j = 0; j < frequency[i]; j++)
+                    {
+                        sortedPixels[index++] = (byte)i;                      
+                    }
+                
             }
+            for(int i = 0;i < sortedPixels.Length; i++)
+            {
+                Console.Write(sortedPixels[i]);
+                Console.Write(" ");
+            }
+            Console.Write('\n');
+
             return sortedPixels;
         }
 

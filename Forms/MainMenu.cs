@@ -30,7 +30,7 @@ namespace Algorithms_Project
             {
                 string OpenedFilePath = openFileDialog1.FileName;
                 ImageMatrix = ImageOperations.OpenImage(OpenedFilePath);
-                ImageOperations.DisplayImage(ImageMatrix, pictureBox1);
+                ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
             }
         }
 
@@ -71,6 +71,7 @@ namespace Algorithms_Project
             {
                 int windowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
+                byte[,] filteredImageMatrix = ImageMatrix;
                 ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, ImageMatrix), pictureBox1);
             }
 
@@ -90,6 +91,11 @@ namespace Algorithms_Project
             {
 
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
