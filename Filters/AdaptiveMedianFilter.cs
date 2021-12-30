@@ -13,10 +13,11 @@ namespace Algorithms_Project.Filters
 
         public static byte[,] ImageFiltering(int maxWindowSize, bool countSort,byte[,] imageMatrix)
         {
-            int width=imageMatrix.GetLength(0);
-            int height=imageMatrix.GetLength(1);
+            int width = ImageOperations.GetWidth(imageMatrix);
 
-            for(int x = 0; x < height; x++)
+            int height = ImageOperations.GetHeight(imageMatrix);
+
+            for (int x = 0; x < height; x++)
             {
                 for(int y = 0; y < width; y++)
                 {

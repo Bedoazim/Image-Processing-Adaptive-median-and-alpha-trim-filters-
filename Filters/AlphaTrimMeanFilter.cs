@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Algorithms_Project.Algorithms;
+using Algorithms_Project.Filters;
 
 
 namespace Algorithms_Project.Filters
@@ -13,8 +14,9 @@ namespace Algorithms_Project.Filters
 
         public static byte[,] ImageFiltering(int windowSize, int trimValue, bool countingSort, byte[,] imageMatrix)
         {
-            int width = imageMatrix.GetLength(0);
-            int height = imageMatrix.GetLength(1);
+            int width = ImageOperations.GetWidth(imageMatrix);
+            
+            int height = ImageOperations.GetHeight(imageMatrix);
 
             for (int x = 0; x < height; x++)
             {

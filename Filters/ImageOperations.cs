@@ -135,8 +135,7 @@ namespace Algorithms_Project.Filters
             {
                 for(int j = left; j <= right; j++)
                 {
-                    pixels[index] = imageMatrix[i, j];
-                    index++;
+                    pixels[index++] = imageMatrix[i, j];
                 }
             }
             return pixels;
