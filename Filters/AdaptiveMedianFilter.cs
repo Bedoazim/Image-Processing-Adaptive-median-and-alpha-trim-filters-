@@ -35,7 +35,6 @@ namespace Algorithms_Project.Filters
                         else
                         {
                             windowSize++;
-
                             if(windowSize >= maxWindowSize)
                                 imageMatrix[x, y] = getMedianPixel(sortedPixels);
                         }              

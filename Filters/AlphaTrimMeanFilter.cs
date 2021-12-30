@@ -20,7 +20,6 @@ namespace Algorithms_Project.Filters
             {
                 for (int y = 0; y < width; y++)
                 {
-
                     byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix, x, y, windowSize);
 
                     byte[] middlePixels = removingTMaxAndMin(pixels, trimValue, countingSort);
