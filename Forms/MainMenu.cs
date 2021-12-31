@@ -6,8 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZedGraph;
 using System.Windows.Forms;
 using Algorithms_Project.Filters;
+using Algorithms_Project.graph;
+using Algorithms_Project.Forms;
 
 namespace Algorithms_Project
 {
@@ -72,30 +75,84 @@ namespace Algorithms_Project
             {
                 int windowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
-                ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, imageMatrix), pictureBox1);
+                ImageOperations.DisplayImage(imageMatrix = Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, imageMatrix), pictureBox1);
             }
 
-        }
-
-        private void graph_Click(object sender, EventArgs e)
-        {
-            if (medianWindowGraph.Text.Length == 0)
-            {
-                MessageBox.Show("Please enter the max window size for median filter!");
-            }
-            else if (meanWindowGraph.Text.Length == 0)
-            {
-                MessageBox.Show("Please enter the max window size for mean filter!");
-            }
-            else
-            {
-
-            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void meanWindowSize_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void medianGraph_Click(object sender, EventArgs e)
+        {
+            int maxWindowSize = int.Parse(medianMaxWindowSize.Text);
+            int size = ((maxWindowSize - 3) / 2) + 2;
+            double[] windowSizes = new double[size];
+            double[] quickSortTime = new double[size];
+            double[] countSortTime = new double[size];
+            int index = 1;
+            windowSizes[0] = quickSortTime[0] = countSortTime[0] = 0;
+            for (int i = 3; i <= maxWindowSize; i += 2)
+            {
+                windowSizes[index] = i;
+                double timeBefore = System.Environment.TickCount;
+                byte[,] test = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, true, imageMatrix);
+                double totalTime = (System.Environment.TickCount - timeBefore);
+                countSortTime[index] = totalTime;
+                timeBefore = System.Environment.TickCount;
+                test = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, false, imageMatrix);
+                totalTime = (System.Environment.TickCount - timeBefore);
+                quickSortTime[index] = totalTime;
+                index++;
+            }
+
+            ZGraph ZGF = new ZGraph("Adaptive Median filter Graph", "Window Size", "Time in ms");
+            ZGF.add_curve("Time of Quick Sort", windowSizes, quickSortTime, Color.Red);
+            ZGF.add_curve("Time of Counting Sort", windowSizes, countSortTime, Color.Blue);
+            ZGF.Show();
+        }
+
+        private void meanGraph_Click(object sender, EventArgs e)
+        {
+            int maxWindowSize = int.Parse(meanWindowSize.Text);
+            int trimValue= int.Parse(meanTrimValue.Text);
+            int size = ((maxWindowSize - 3) / 2) + 2;
+            double[] windowSizes = new double[size];
+            double[] selectingKthElementTime = new double[size];
+            double[] countSortTime = new double[size];
+            int index = 1;
+            windowSizes[0] = selectingKthElementTime[0] = countSortTime[0] = 0;
+            
+            for (int i = 3; i <= maxWindowSize; i += 2)
+            {
+                windowSizes[index] = i;
+                double timeBefore = System.Environment.TickCount;
+                byte[,] test = Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize, trimValue, true, imageMatrix);
+                double totalTime = (System.Environment.TickCount - timeBefore);
+                countSortTime[index] = totalTime;
+                timeBefore = System.Environment.TickCount;
+                test = Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize,trimValue, false, imageMatrix);
+                totalTime = (System.Environment.TickCount - timeBefore);
+                selectingKthElementTime[index] = totalTime;
+                index++;
+            }
+
+            ZGraph ZGF = new ZGraph("Alpha-Trim Mean filter Graph", "Window Size", "Time in ms");
+            ZGF.add_curve("Time of Selecting Kth Elements", windowSizes, selectingKthElementTime, Color.Red);
+            ZGF.add_curve("Time of Counting Sort", windowSizes, countSortTime, Color.Blue);
+            ZGF.Show();
         }
     }
 }
