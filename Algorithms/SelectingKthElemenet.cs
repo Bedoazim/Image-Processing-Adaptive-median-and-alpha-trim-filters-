@@ -10,22 +10,19 @@ namespace Algorithms_Project.Algorithms
     {
         public static byte[] smallest(byte[] pixels,int k)
         {
-            int [] frequency= new int[260];
-            byte[] selected = new byte[pixels.Length];
+            int [] frequency= new int[256];
+            byte[] selected = new byte[pixels.Length - k];
             int index = 0;
             byte minPixel = 255, maxPixel = 0;
-
-            for (int i = minPixel; i <= maxPixel; i++)
-            {
-                frequency[i] = 0;
-            }
 
             for (int i = 0; i < pixels.Length; i++)
             {
                 frequency[(int)pixels[i]]++;
+                minPixel=Math.Min(minPixel, pixels[i]);
+                maxPixel=Math.Max(maxPixel, pixels[i]);
             }
 
-            for(byte i = minPixel; i <= maxPixel; i++)
+            for(int i = (int)minPixel; i <= (int)maxPixel; i++)
             {
                 if (k > frequency[i])
                 {
@@ -41,7 +38,7 @@ namespace Algorithms_Project.Algorithms
                 {
                     for(int j = 0; j < frequency[i]; j++)
                     {
-                        selected[index++] = i;
+                        selected[index++] = (byte)i;
                     }
                 }
             }
@@ -51,20 +48,18 @@ namespace Algorithms_Project.Algorithms
 
         public static byte[] largest(byte[] pixels,int k)
         {
-            byte[] frequency = new byte[260];
-            
-            byte[] selected = new byte[pixels.Length];
-            
+            byte[] frequency = new byte[256];
+            byte[] selected = new byte[pixels.Length - k];           
             int index = 0;
-
             byte minPixel = 255, maxPixel = 0;
-
-            for (int i = minPixel; i <= maxPixel; i++)
+            for (int i = 0; i < pixels.Length; i++)
             {
-                frequency[i] = 0;
+                frequency[(int)pixels[i]]++;
+                minPixel = Math.Min(minPixel, pixels[i]);
+                maxPixel = Math.Max(maxPixel, pixels[i]);
             }
 
-            for (byte i = maxPixel; i >= minPixel; i--)
+            for (int i = (int)maxPixel; i >= (int)minPixel; i--)
             {
                 if (k > frequency[i])
                 {
@@ -80,7 +75,7 @@ namespace Algorithms_Project.Algorithms
                 {
                     for (int j = 0; j < frequency[i]; j++)
                     {
-                        selected[index++] = i;
+                        selected[index++] = (byte)i;
                     }
                 }
             }

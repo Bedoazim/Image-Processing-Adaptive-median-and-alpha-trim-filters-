@@ -22,15 +22,15 @@ namespace Algorithms_Project
         {
             
         }
-        byte[,] ImageMatrix;
+        byte[,] imageMatrix;
         private void openImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string OpenedFilePath = openFileDialog1.FileName;
-                ImageMatrix = ImageOperations.OpenImage(OpenedFilePath);
-                ImageOperations.DisplayImage(ImageMatrix, pictureBox2);
+                imageMatrix = ImageOperations.OpenImage(OpenedFilePath);
+                ImageOperations.DisplayImage(imageMatrix, pictureBox2);
             }
         }
 
@@ -48,7 +48,8 @@ namespace Algorithms_Project
             else
             {
                 int maxWindowSize=int.Parse(medianMaxWindowSize.Text);
-                ImageOperations.DisplayImage(Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize,medianCountingSort.Checked,ImageMatrix), pictureBox1);
+                byte[,] filteredImageMatrix = imageMatrix;
+                ImageOperations.DisplayImage(Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize,medianCountingSort.Checked,filteredImageMatrix), pictureBox1);
             }
 
         }
@@ -71,8 +72,8 @@ namespace Algorithms_Project
             {
                 int windowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
-                byte[,] filteredImageMatrix = ImageMatrix;
-                ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, ImageMatrix), pictureBox1);
+                byte[,] filteredImageMatrix = imageMatrix;
+                ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, filteredImageMatrix), pictureBox1);
             }
 
         }

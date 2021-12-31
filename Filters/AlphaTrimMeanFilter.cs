@@ -18,6 +18,8 @@ namespace Algorithms_Project.Filters
             
             int height = ImageOperations.GetHeight(imageMatrix);
 
+            byte[,] newImageMatrix = new byte[height, width];
+
             for (int x = 0; x < height; x++)
             {
                 for (int y = 0; y < width; y++)
@@ -26,11 +28,11 @@ namespace Algorithms_Project.Filters
 
                     byte[] middlePixels = removingTMaxAndMin(pixels, trimValue, countingSort);
 
-                    imageMatrix[x, y] =  getMeanOfPixels(middlePixels);
+                    newImageMatrix[x, y] =  getMeanOfPixels(middlePixels);
                 }
             }
 
-            return imageMatrix;
+            return newImageMatrix;
         }
         private static byte[] removingTMaxAndMin(byte[] pixels, int trimValue, bool countingSort)
         {
@@ -38,9 +40,10 @@ namespace Algorithms_Project.Filters
             if (countingSort)
             {
                 byte[] sortedPixels = Algorithms.Sort.countingSort(pixels);
+                int index = 0;
                 for(int i=trimValue; i<sortedPixels.Length-trimValue; i++)
                 {
-                    remainingPixels.Append(sortedPixels[i]); 
+                    remainingPixels[index++] = sortedPixels[i]; 
                 } 
             }
             else
@@ -55,11 +58,9 @@ namespace Algorithms_Project.Filters
             int meanOfPixels = 0;
             for (int i = 0; i < pixels.Length; i++)
             {
-                meanOfPixels += pixels[i];
+                meanOfPixels += (int)pixels[i];
             }
-            
             meanOfPixels /= pixels.Length;
-         
             return (byte)meanOfPixels;
         }
     }

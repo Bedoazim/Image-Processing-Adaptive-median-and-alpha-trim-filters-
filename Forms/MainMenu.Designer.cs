@@ -55,7 +55,7 @@
             // openImage
             // 
             this.openImage.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openImage.Location = new System.Drawing.Point(12, 53);
+            this.openImage.Location = new System.Drawing.Point(12, 241);
             this.openImage.Name = "openImage";
             this.openImage.Size = new System.Drawing.Size(155, 68);
             this.openImage.TabIndex = 0;
@@ -66,7 +66,7 @@
             // medianFilter
             // 
             this.medianFilter.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.medianFilter.Location = new System.Drawing.Point(1026, 591);
+            this.medianFilter.Location = new System.Drawing.Point(1163, 671);
             this.medianFilter.Name = "medianFilter";
             this.medianFilter.Size = new System.Drawing.Size(155, 68);
             this.medianFilter.TabIndex = 1;
@@ -77,7 +77,7 @@
             // meanFilter
             // 
             this.meanFilter.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.meanFilter.Location = new System.Drawing.Point(658, 591);
+            this.meanFilter.Location = new System.Drawing.Point(654, 671);
             this.meanFilter.Name = "meanFilter";
             this.meanFilter.Size = new System.Drawing.Size(155, 68);
             this.meanFilter.TabIndex = 2;
@@ -88,7 +88,7 @@
             // graph
             // 
             this.graph.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.graph.Location = new System.Drawing.Point(158, 609);
+            this.graph.Location = new System.Drawing.Point(152, 671);
             this.graph.Name = "graph";
             this.graph.Size = new System.Drawing.Size(155, 68);
             this.graph.TabIndex = 3;
@@ -98,16 +98,16 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(737, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(902, 30);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(461, 404);
+            this.pictureBox1.Size = new System.Drawing.Size(621, 501);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // medianMaxWindowSize
             // 
             this.medianMaxWindowSize.AccessibleName = "";
-            this.medianMaxWindowSize.Location = new System.Drawing.Point(1135, 477);
+            this.medianMaxWindowSize.Location = new System.Drawing.Point(1312, 585);
             this.medianMaxWindowSize.Name = "medianMaxWindowSize";
             this.medianMaxWindowSize.Size = new System.Drawing.Size(115, 22);
             this.medianMaxWindowSize.TabIndex = 5;
@@ -117,7 +117,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(957, 478);
+            this.label1.Location = new System.Drawing.Point(1110, 588);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 19);
             this.label1.TabIndex = 6;
@@ -127,7 +127,7 @@
             // 
             this.medianCountingSort.AutoSize = true;
             this.medianCountingSort.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold);
-            this.medianCountingSort.Location = new System.Drawing.Point(1135, 534);
+            this.medianCountingSort.Location = new System.Drawing.Point(1312, 635);
             this.medianCountingSort.Name = "medianCountingSort";
             this.medianCountingSort.Size = new System.Drawing.Size(115, 24);
             this.medianCountingSort.TabIndex = 7;
@@ -138,7 +138,7 @@
             // 
             this.medianQuickSort.AutoSize = true;
             this.medianQuickSort.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.medianQuickSort.Location = new System.Drawing.Point(961, 535);
+            this.medianQuickSort.Location = new System.Drawing.Point(1114, 635);
             this.medianQuickSort.Name = "medianQuickSort";
             this.medianQuickSort.Size = new System.Drawing.Size(94, 24);
             this.medianQuickSort.TabIndex = 8;
@@ -149,7 +149,7 @@
             // 
             this.meanSelectingKthElement.AutoSize = true;
             this.meanSelectingKthElement.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold);
-            this.meanSelectingKthElement.Location = new System.Drawing.Point(592, 554);
+            this.meanSelectingKthElement.Location = new System.Drawing.Point(565, 635);
             this.meanSelectingKthElement.Name = "meanSelectingKthElement";
             this.meanSelectingKthElement.Size = new System.Drawing.Size(170, 24);
             this.meanSelectingKthElement.TabIndex = 11;
@@ -160,7 +160,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(588, 481);
+            this.label2.Location = new System.Drawing.Point(561, 555);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 19);
             this.label2.TabIndex = 10;
@@ -169,7 +169,7 @@
             // meanWindowSize
             // 
             this.meanWindowSize.AccessibleName = "";
-            this.meanWindowSize.Location = new System.Drawing.Point(777, 481);
+            this.meanWindowSize.Location = new System.Drawing.Point(777, 551);
             this.meanWindowSize.Name = "meanWindowSize";
             this.meanWindowSize.Size = new System.Drawing.Size(115, 22);
             this.meanWindowSize.TabIndex = 9;
@@ -179,7 +179,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(608, 521);
+            this.label3.Location = new System.Drawing.Point(561, 591);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 19);
             this.label3.TabIndex = 13;
@@ -188,7 +188,7 @@
             // meanTrimValue
             // 
             this.meanTrimValue.AccessibleName = "";
-            this.meanTrimValue.Location = new System.Drawing.Point(777, 521);
+            this.meanTrimValue.Location = new System.Drawing.Point(777, 588);
             this.meanTrimValue.Name = "meanTrimValue";
             this.meanTrimValue.Size = new System.Drawing.Size(115, 22);
             this.meanTrimValue.TabIndex = 14;
@@ -198,7 +198,7 @@
             // 
             this.meanCountingSort.AutoSize = true;
             this.meanCountingSort.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold);
-            this.meanCountingSort.Location = new System.Drawing.Point(777, 554);
+            this.meanCountingSort.Location = new System.Drawing.Point(777, 635);
             this.meanCountingSort.Name = "meanCountingSort";
             this.meanCountingSort.Size = new System.Drawing.Size(115, 24);
             this.meanCountingSort.TabIndex = 15;
@@ -209,7 +209,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 512);
+            this.label4.Location = new System.Drawing.Point(12, 603);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(248, 19);
             this.label4.TabIndex = 16;
@@ -219,7 +219,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 554);
+            this.label5.Location = new System.Drawing.Point(14, 635);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(234, 19);
             this.label5.TabIndex = 17;
@@ -228,26 +228,26 @@
             // medianWindowGraph
             // 
             this.medianWindowGraph.AccessibleName = "";
-            this.medianWindowGraph.Location = new System.Drawing.Point(382, 512);
+            this.medianWindowGraph.Location = new System.Drawing.Point(325, 600);
             this.medianWindowGraph.Name = "medianWindowGraph";
-            this.medianWindowGraph.Size = new System.Drawing.Size(62, 22);
+            this.medianWindowGraph.Size = new System.Drawing.Size(119, 22);
             this.medianWindowGraph.TabIndex = 18;
             this.medianWindowGraph.Tag = "max window size";
             // 
             // meanWindowGraph
             // 
             this.meanWindowGraph.AccessibleName = "";
-            this.meanWindowGraph.Location = new System.Drawing.Point(382, 554);
+            this.meanWindowGraph.Location = new System.Drawing.Point(325, 632);
             this.meanWindowGraph.Name = "meanWindowGraph";
-            this.meanWindowGraph.Size = new System.Drawing.Size(62, 22);
+            this.meanWindowGraph.Size = new System.Drawing.Size(119, 22);
             this.meanWindowGraph.TabIndex = 19;
             this.meanWindowGraph.Tag = "max window size";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(233, 30);
+            this.pictureBox2.Location = new System.Drawing.Point(202, 30);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(461, 404);
+            this.pictureBox2.Size = new System.Drawing.Size(661, 501);
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -256,7 +256,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 711);
+            this.ClientSize = new System.Drawing.Size(1570, 781);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.meanWindowGraph);
             this.Controls.Add(this.medianWindowGraph);

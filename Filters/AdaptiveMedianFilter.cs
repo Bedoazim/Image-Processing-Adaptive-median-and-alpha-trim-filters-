@@ -17,30 +17,12 @@ namespace Algorithms_Project.Filters
 
             int height = ImageOperations.GetHeight(imageMatrix);
 
-            Console.WriteLine(height);
-            Console.WriteLine(width);
-
-            for (int x = 0; x < height; x++)
-            {
-                for (int y = 0; y < width; y++)
-                {
-
-                    Console.Write(imageMatrix[x, y]);
-                    Console.Write(' ');
-
-                }
-                Console.Write('\n');
-            }
-
             byte[,] newImageMatrix = new byte[height, width];
 
             for (int x = 0; x < height; x++)
             {
                 for(int y = 0; y < width; y++)
-                {
-
-                    Console.Write(newImageMatrix[x, y]);
-                    Console.Write('\n');   
+                { 
 
                     for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2)
                     {
@@ -74,7 +56,7 @@ namespace Algorithms_Project.Filters
         }
         private static byte getMedianPixel(byte[] pixels)
         {
-            int med= (pixels.Length) / 2;
+            int med = (pixels.Length) / 2;
             return pixels[med];
         }
         private static byte getMaxPixel(byte[] pixels)

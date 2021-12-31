@@ -112,37 +112,13 @@ namespace Algorithms_Project.Filters
             
             byte[] pixels = new byte[windowSize * windowSize];
 
-            int border = (windowSize) / 2;
-            int upper = x - border, lower = x + border, right = y + border, left = y - border;
-            int index = 0, height = GetHeight(imageMatrix), width = GetWidth(imageMatrix); 
-
-            for(int i = upper; i <= lower; i++)
-            {
-                for(int j = left; j <= right; j++)
-                {
-                    if (isValidPoint(i, j, height, width))  pixels[index++] = imageMatrix[i, j];
-                }
-            }
-
-            byte[] windowOfPixels = new byte[index];
-
-            for(int i = 0; i < index; i++)
-            {
-                windowOfPixels[i] = pixels[i];
-            }
-
-            return windowOfPixels;
-
-            /*
-            byte[] pixels = new byte[windowSize * windowSize];
-
             int border = (windowSize - 1) / 2;
             int upper = x - border, lower = x + border, right = y + border, left = y - border;
             int height = GetHeight(imageMatrix), width = GetWidth(imageMatrix), index = 0;
 
             if (upper < 0)
             {
-                lower += 0 - upper;
+                lower += Math.Abs(0 - upper);
                 upper = 0;
             }
             else if (lower >= height)
@@ -152,7 +128,7 @@ namespace Algorithms_Project.Filters
             }
             if (left < 0)
             {
-                right += 0 - left;
+                right += Math.Abs(0 - left);
                 left = 0;
             }
             else if (right >= width)
@@ -168,14 +144,7 @@ namespace Algorithms_Project.Filters
                     index++;
                 }
             }
-            return pixels;*/
-
+            return pixels;
         }
-
-        private static bool isValidPoint(int x, int y,int height,int width)
-        {
-            return (x >= 0 && x < height && y >= 0 && y < width);
-        }
-
     }
 }
