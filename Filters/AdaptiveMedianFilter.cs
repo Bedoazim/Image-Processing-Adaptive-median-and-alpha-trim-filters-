@@ -24,7 +24,7 @@ namespace Algorithms_Project.Filters
                 for(int y = 0; y < width; y++)
                 { 
 
-                    for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2)
+                    for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize++)
                     {
                         byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize);
 
@@ -34,7 +34,7 @@ namespace Algorithms_Project.Filters
                         
                         if (!isNoisyPixel(median, sortedPixels))
                         {
-                            if (isNoisyPixel(newImageMatrix[x, y], sortedPixels))
+                            if (isNoisyPixel(imageMatrix[x, y], sortedPixels))
                             {
                                 newImageMatrix[x, y] = median;
                             }
@@ -46,7 +46,8 @@ namespace Algorithms_Project.Filters
                         }
                         else
                         {
-                            if (windowSize + 2 > maxWindowSize) 
+                            windowSize++;
+                            if (windowSize >= maxWindowSize) 
                                 newImageMatrix[x, y] = median;
                         }              
                     }
@@ -57,25 +58,18 @@ namespace Algorithms_Project.Filters
         private static byte getMedianPixel(byte[] pixels)
         {
             int med = (pixels.Length) / 2;
+            if (pixels.Length % 2 == 0)
+            {
+                int median = pixels[med] + pixels[med - 1];
+                return (byte)(median / 2);
+            }
             return pixels[med];
-        }
-        private static byte getMaxPixel(byte[] pixels)
+        } 
+        private static bool isNoisyPixel(byte pixel,byte[] pixels)
         {
-            int last = pixels.Length - 1;
-            return pixels[last];
-        }
-        private static byte getMinPixel(byte[] pixels)
-        {
-            return pixels[0];
-        }  
-        private static bool isNoisyPixel(int pixel,byte[] pixels)
-        {
-            byte minPixel = getMinPixel(pixels);
-            byte maxPixel = getMaxPixel(pixels);
-            int diffBetweenCurrentPixelAndMaxPixel = maxPixel - pixel;
-            int diffBetweenCurrentPixelAndMinPixel = pixel - minPixel;
-
-            return (diffBetweenCurrentPixelAndMaxPixel == 0 || diffBetweenCurrentPixelAndMinPixel == 0);
+            byte minPixel = pixels[pixels.Length-1];
+            byte maxPixel = pixels[0];
+            return (pixel == minPixel || pixel == maxPixel);
         }
         private static byte[] sortPixels(byte[] pixels,bool countSort)
         {
@@ -84,7 +78,7 @@ namespace Algorithms_Project.Filters
             if (countSort)
                 sortedPixels = Algorithms.Sort.countingSort(pixels);
             else
-                sortedPixels = Algorithms.Sort.quickSort(pixels,0,pixels.Length);
+                sortedPixels = Algorithms.Sort.quickSort(pixels, 0, pixels.Length);
 
             return sortedPixels;
         }

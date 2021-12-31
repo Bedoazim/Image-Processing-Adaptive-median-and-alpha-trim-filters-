@@ -56,7 +56,7 @@ namespace Algorithms_Project.Algorithms
             byte[] sortedPixels = new byte[pixels.Length];
             int[] frequency=new int[260];
             int index = 0;
-            HashSet<byte> uniquePixels = new HashSet<byte>();
+            SortedSet<byte> uniquePixels = new SortedSet<byte>();
             for (int i = 0; i < pixels.Length; i++)
             {
                 frequency[(int)pixels[i]]++;

@@ -118,17 +118,18 @@ namespace Algorithms_Project.Filters
 
             if (upper < 0)
             {
-                lower += Math.Abs(0 - upper);
+                lower += 0 - upper;
                 upper = 0;
             }
             else if (lower >= height)
             {
                 upper -= lower - height;
-                lower = height - 1; 
+                lower = height - 1;
             }
+
             if (left < 0)
             {
-                right += Math.Abs(0 - left);
+                right += 0 - left;
                 left = 0;
             }
             else if (right >= width)
@@ -136,12 +137,12 @@ namespace Algorithms_Project.Filters
                 left -= right - width;
                 right = width - 1;
             }
+
             for (int i = upper; i <= lower; i++)
             {
                 for (int j = left; j <= right; j++)
                 {
-                    pixels[index] = imageMatrix[i, j];
-                    index++;
+                    pixels[index++] = imageMatrix[i, j];
                 }
             }
             return pixels;

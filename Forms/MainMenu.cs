@@ -48,8 +48,8 @@ namespace Algorithms_Project
             else
             {
                 int maxWindowSize=int.Parse(medianMaxWindowSize.Text);
-                byte[,] filteredImageMatrix = imageMatrix;
-                ImageOperations.DisplayImage(Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize,medianCountingSort.Checked,filteredImageMatrix), pictureBox1);
+                ImageOperations.DisplayImage(imageMatrix = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, medianCountingSort.Checked, imageMatrix)
+, pictureBox1);
             }
 
         }
@@ -72,8 +72,7 @@ namespace Algorithms_Project
             {
                 int windowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
-                byte[,] filteredImageMatrix = imageMatrix;
-                ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, filteredImageMatrix), pictureBox1);
+                ImageOperations.DisplayImage(Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, imageMatrix), pictureBox1);
             }
 
         }
