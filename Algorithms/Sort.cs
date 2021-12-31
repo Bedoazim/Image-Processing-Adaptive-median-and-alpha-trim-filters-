@@ -53,36 +53,22 @@ namespace Algorithms_Project.Algorithms
         }
         public static byte[] countingSort(byte[] pixels)
         {
-            
             byte[] sortedPixels = new byte[pixels.Length];
-         
             int[] frequency=new int[260];
-
             int index = 0;
-
-            byte minPixel = 0, maxPixel = 255;
-
+            HashSet<byte> uniquePixels = new HashSet<byte>();
             for (int i = 0; i < pixels.Length; i++)
             {
                 frequency[(int)pixels[i]]++;
-            
+                uniquePixels.Add(pixels[i]);
             }
-            for(int i = minPixel;i <= maxPixel; i++)
+            foreach(int i in uniquePixels)
             {
-               
-                    for (int j = 0; j < frequency[i]; j++)
-                    {
-                        sortedPixels[index++] = (byte)i;                      
-                    }
-                
+                for (int j = 0; j < frequency[i]; j++)
+                {
+                    sortedPixels[index++] = (byte)i;
+                }   
             }
-            for(int i = 0;i < sortedPixels.Length; i++)
-            {
-                Console.Write(sortedPixels[i]);
-                Console.Write(" ");
-            }
-            Console.Write('\n');
-
             return sortedPixels;
         }
 
