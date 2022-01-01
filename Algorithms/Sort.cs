@@ -8,36 +8,37 @@ namespace Algorithms_Project.Algorithms
 {
     public static class Sort{
 
-        public static byte[] quickSort(byte[] pixels,int low, int high)
+        public static byte[] quickSort(byte[] pixels,int low, int high)  // O((high-low)*(high-low))
         {
             if (low < high)
             {
-                int pivotPosition = Partition(pixels, low, high);
-                quickSort(pixels, low, pivotPosition - 1);
-                quickSort(pixels, pivotPosition + 1, high);
+                int pivotPosition = Partition(pixels, low, high);  // O(high-low)
+                quickSort(pixels, low, pivotPosition - 1); // (0 -> -1) O(high-low)
+                quickSort(pixels, pivotPosition + 1, high);  // (1 -> high) O(high-low)
             }
             return pixels;   
         }
-        private static int Partition(byte[] pixels, int low, int high)
+        private static int Partition(byte[] pixels, int low, int high)  // O(high-low) 
         {
-            byte pivot = pixels[high];
-            int lowWall = low;            
-            for(int i = low ; i < high; i++)
+            // 1 6 5 4 3 2 7
+            byte pivot = pixels[high]; // O(1) 
+            int lowWall = low;            // O(1) 
+            for (int i = low ; i < high; i++)  // O(high-low)
             {
                 if(pixels[i] <= pivot)
                 {
-                    Swap(pixels, i, lowWall);
-                    lowWall++;
+                    Swap(pixels, i, lowWall);  // O(1)
+                    lowWall++;  // O(1) 
                 }
             }
-            Swap(pixels, high, lowWall);
-            return lowWall;
+            Swap(pixels, high, lowWall);  // O(1)
+            return lowWall;  // O(1)
         }
         private static void Swap(byte[] pixels,int first, int second)
         {
-            byte swap = pixels[first];
-            pixels[first] = pixels[second];
-            pixels[second] = swap;
+            byte swap = pixels[first]; // O(1)
+            pixels[first] = pixels[second];  // O(1)
+            pixels[second] = swap;  // O(1)
         }
 
         public static byte[] countingSort(byte[] pixels) // O(max(pixels.Length, maxPixel))

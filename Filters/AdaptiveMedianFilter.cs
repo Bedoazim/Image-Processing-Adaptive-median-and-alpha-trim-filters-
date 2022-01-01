@@ -27,7 +27,7 @@ namespace Algorithms_Project.Filters
 
                     for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2) // O(maxWindowSize-minWindowSize+1)
                     {
-                        byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize); 
+                        byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize); // O(windowSize*windowSize)
 
                         byte[] sortedPixels = sortPixels(pixels, countSort); 
                         
@@ -50,7 +50,7 @@ namespace Algorithms_Project.Filters
                             if (windowSize + 2 > maxWindowSize)
                             {
                                 
-                                /*byte neValue = 0;
+                                byte neValue = 0;
                                 for(int k = 0; k < sortedPixels.Length; k++)
                                 {
                                     if (sortedPixels[k] != (byte)0 && sortedPixels[k] != (byte)255)
@@ -63,7 +63,7 @@ namespace Algorithms_Project.Filters
                                 {
                                     newImageMatrix[x, y] = neValue;
                                 }
-                                else*/
+                                else
                                     newImageMatrix[x, y] = median;
                             }
                         }              
@@ -90,10 +90,10 @@ namespace Algorithms_Project.Filters
         }
         private static byte[] sortPixels(byte[] pixels,bool countSort)
         {
-            byte[] sortedPixels;
+            byte[] sortedPixels; // O(1)
 
             if (countSort)
-                sortedPixels = Algorithms.Sort.countingSort(pixels);
+                sortedPixels = Algorithms.Sort.countingSort(pixels); // O(max(pixels.Length, maxPixel))
             else
                 sortedPixels = Algorithms.Sort.quickSort(pixels, 0, pixels.Length - 1);
 
