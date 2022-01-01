@@ -8,22 +8,22 @@ namespace Algorithms_Project.Algorithms
 {
     public static class Sort{
 
-        public static byte[] quickSort(byte[] pixels,int low, int high)  // O((high-low)*(high-low))
+        public static byte[] quickSort(byte[] pixels,int low, int high)  // O((high - low)*(high - low))
         {
-            if (low < high)
+            if (low < high) // O(1)
             {
-                int pivotPosition = Partition(pixels, low, high);  // O(high-low)
-                quickSort(pixels, low, pivotPosition - 1); // (0 -> -1) O(high-low)
-                quickSort(pixels, pivotPosition + 1, high);  // (1 -> high) O(high-low)
+                int pivotPosition = Partition(pixels, low, high);  // O(high - low)
+                quickSort(pixels, low, pivotPosition - 1); // (0 -> -1) O(high - low)
+                quickSort(pixels, pivotPosition + 1, high);  // (1 -> high) O(high - low)
             }
-            return pixels;   
+            return pixels;   // O(1)
         }
-        private static int Partition(byte[] pixels, int low, int high)  // O(high-low) 
+        private static int Partition(byte[] pixels, int low, int high)  // O(high - low) 
         {
             // 1 6 5 4 3 2 7
             byte pivot = pixels[high]; // O(1) 
             int lowWall = low;            // O(1) 
-            for (int i = low ; i < high; i++)  // O(high-low)
+            for (int i = low ; i < high; i++)  // O(high - low)
             {
                 if(pixels[i] <= pivot)
                 {
@@ -41,7 +41,7 @@ namespace Algorithms_Project.Algorithms
             pixels[second] = swap;  // O(1)
         }
 
-        public static byte[] countingSort(byte[] pixels) // O(max(pixels.Length, maxPixel))
+        public static byte[] countingSort(byte[] pixels) // O(pixels.Length + maxPixel - minPixel)
         {
             byte[] sortedPixels = new byte[pixels.Length]; // O(1)
             int[] frequency=new int[256]; // O(1)
@@ -54,7 +54,7 @@ namespace Algorithms_Project.Algorithms
                 maxPixel = Math.Max(maxPixel, pixels[i]); // O(1)
             }
 
-            for (int i = minPixel; i <= maxPixel; i++) // O(maxPixel-minPixel+1)
+            for (int i = minPixel; i <= maxPixel; i++) // O(maxPixel - minPixel + 1)
             {
                 for (int j = 0; j < frequency[i]; j++) // O(frequancy[i])
                 {
@@ -62,9 +62,9 @@ namespace Algorithms_Project.Algorithms
                 }
             }
             /* 
-             * Another implementation for counting sort in O(log(uniquePixels.Length)*Log(uniquePixels.Length)) which is preferred in small n (n < 197) *
+             * Another implementation for counting sort in O(pixels.Length*log(uniquePixels.Length)) which is preferred in small n (n < 197) *
               
-            if (pixels.Length < 197)
+            if (pixels.Length < 197) // O(1)
             {
                 SortedSet<byte> uniquePixels = new SortedSet<byte>(); // O(1)
                 for (int i = 0; i < pixels.Length; i++) // O(pixels.Length)

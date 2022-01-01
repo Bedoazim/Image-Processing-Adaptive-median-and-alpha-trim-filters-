@@ -8,25 +8,25 @@ namespace Algorithms_Project.Algorithms
 {
     class SelectingKthElemenet
     {
-        public static byte[] smallest(byte[] pixels,int k) // O( max(  pixels.Length, maxPixel - minPixel, frequency[i] ))
+        public static byte[] smallest(byte[] pixels,int k) // O(pixels.Length + maxPixel - minPixel))
         {
-            int [] frequency= new int[256]; // O(1) not sure
-            byte[] selected = new byte[pixels.Length - k]; //O(1) not sure
-            int index = 0; //O(1)
+            int [] frequency= new int[256]; // O(1) 
+            byte[] selected = new byte[pixels.Length - k]; // O(1) 
+            int index = 0; // O(1)
             byte minPixel = 255, maxPixel = 0; // O(1)
 
-            for (int i = 0; i < pixels.Length; i++) //O( pixels.Length)
+            for (int i = 0; i < pixels.Length; i++) // O(pixels.Length)
             {
                 frequency[(int)pixels[i]]++; // O(1)
-                minPixel=Math.Min(minPixel, pixels[i]); //O(1)
-                maxPixel=Math.Max(maxPixel, pixels[i]); //O(1)
+                minPixel=Math.Min(minPixel, pixels[i]); // O(1)
+                maxPixel=Math.Max(maxPixel, pixels[i]); // O(1)
             }
 
-            for(int i = (int)minPixel; i <= (int)maxPixel; i++) // O( maxPixel - minPixel)
+            for(int i = (int)minPixel; i <= (int)maxPixel; i++) // O(maxPixel - minPixel + 1) 
             {
-                if (k > frequency[i])  //O(1)
+                if (k > frequency[i])  // O(1)
                 {
-                    k-=frequency[i]; //O(1)
+                    k-=frequency[i]; // O(1)
                 }
                 else
                 {
@@ -46,12 +46,12 @@ namespace Algorithms_Project.Algorithms
             return selected; // O(1)
         }
 
-        public static byte[] largest(byte[] pixels,int k) // O( max(pixels.Length, maxPixel - minPixel )
+        public static byte[] largest(byte[] pixels,int k) // O(pixels.Length + maxPixel - minPixel)) 
         {
             byte[] frequency = new byte[256]; // O(1)
             byte[] selected = new byte[pixels.Length - k];      // O(1)     
-            int index = 0;// O(1)
-            byte minPixel = 255, maxPixel = 0;// O(1)
+            int index = 0; // O(1)
+            byte minPixel = 255, maxPixel = 0; // O(1)
             for (int i = 0; i < pixels.Length; i++) // O(pixels.Length)
             {
                 frequency[(int)pixels[i]]++; // O(1)
