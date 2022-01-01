@@ -40,24 +40,24 @@ namespace Algorithms_Project.Algorithms
             pixels[second] = swap;
         }
 
-        public static byte[] countingSort(byte[] pixels)
+        public static byte[] countingSort(byte[] pixels) // O(max(pixels.Length, maxPixel))
         {
-            byte[] sortedPixels = new byte[pixels.Length];
-            int[] frequency=new int[256];
-            int index = 0;
-            byte minPixel = 255, maxPixel = 0;
-            for (int i = 0; i < pixels.Length; i++)
+            byte[] sortedPixels = new byte[pixels.Length]; // O(1)
+            int[] frequency=new int[256]; // O(1)
+            int index = 0; // O(1)
+            byte minPixel = 255, maxPixel = 0; // O(1)
+            for (int i = 0; i < pixels.Length; i++) // O(pixels.Length)
             {
-                frequency[(int)pixels[i]]++;
-                minPixel = Math.Min(minPixel, pixels[i]);
-                maxPixel = Math.Max(maxPixel, pixels[i]);
+                frequency[(int)pixels[i]]++; // O(1)
+                minPixel = Math.Min(minPixel, pixels[i]); // O(1)
+                maxPixel = Math.Max(maxPixel, pixels[i]); // O(1)
             }
 
-            for (int i = minPixel; i <= maxPixel; i++)
+            for (int i = minPixel; i <= maxPixel; i++) // O(maxPixel-minPixel+1)
             {
-                for (int j = 0; j < frequency[i]; j++)
+                for (int j = 0; j < frequency[i]; j++) // O(frequancy[i])
                 {
-                    sortedPixels[index++] = (byte)i;
+                    sortedPixels[index++] = (byte)i; // O(1)
                 }
             }
             /* 
@@ -78,7 +78,7 @@ namespace Algorithms_Project.Algorithms
                     }
                 }
             }*/
-            return sortedPixels;
+            return sortedPixels; // O(1)
         }
 
     }
