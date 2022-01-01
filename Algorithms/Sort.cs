@@ -60,7 +60,9 @@ namespace Algorithms_Project.Algorithms
                     sortedPixels[index++] = (byte)i;
                 }
             }
-            /*
+            /* 
+             * Another implementation for counting sort in O(nLog(n)) which is preferred in small n (n < 197) *
+              
             if (pixels.Length < 197)
             {
                 SortedSet<byte> uniquePixels = new SortedSet<byte>();

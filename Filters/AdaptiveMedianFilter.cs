@@ -25,7 +25,7 @@ namespace Algorithms_Project.Filters
                 for(int y = 0; y < width; y++)
                 { 
 
-                    for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize++)
+                    for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2)
                     {
                         byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize);
 
@@ -47,8 +47,7 @@ namespace Algorithms_Project.Filters
                         }
                         else
                         {
-                            windowSize++;
-                            if (windowSize >= maxWindowSize)
+                            if (windowSize + 2 > maxWindowSize)
                             {
                                 
                                 /*byte neValue = 0;
@@ -115,9 +114,7 @@ namespace Algorithms_Project.Filters
                 ImageFiltering(maxWindow, countSort, newImageMatrix);
                 stopwatch.Stop();
                 time[index++] = stopwatch.ElapsedMilliseconds;
-                Console.Write(stopwatch.ElapsedMilliseconds + " ");
             }
-            Console.WriteLine();
             return time;
         }
     }
