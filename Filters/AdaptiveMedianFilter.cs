@@ -114,7 +114,6 @@ namespace Algorithms_Project.Filters
                 ImageFiltering(maxWindow,countSort, newImageMatrix);
                 timeAfter = System.Environment.TickCount;
                 totalTime = (timeAfter - timeBefore);
-                Console.WriteLine(i + " " + totalTime);
                 time[index++] = totalTime;
             }
             return time;

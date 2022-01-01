@@ -72,8 +72,9 @@ namespace Algorithms_Project.Filters
             int index = 1;
             for (int i = 3; i <= maxWindow; i += 2)
             {
+                byte[,] newImageMatrix = imageMatrix;
                 timeBefore = System.Environment.TickCount;
-                ImageFiltering(maxWindow, trimValue, countSort, imageMatrix);
+                ImageFiltering(maxWindow, trimValue, countSort, newImageMatrix);
                 timeAfter= System.Environment.TickCount;
                 totalTime = (timeAfter - timeBefore);
                 time[index++] = totalTime;
