@@ -110,21 +110,21 @@ namespace Algorithms_Project.Filters
         public static byte[] constructWindowOfPixels(byte[,] imageMatrix, int x, int y, int windowSize)
         {
             
-            byte[] pixels = new byte[windowSize * windowSize];
+            byte[] pixels = new byte[windowSize * windowSize]; // O(1) not sure
 
-            int border = (windowSize - 1) / 2;
-            int upper = x - border, lower = x + border, right = y + border, left = y - border;
-            int height = GetHeight(imageMatrix), width = GetWidth(imageMatrix), index = 0;
+            int border = (windowSize - 1) / 2; // O(1)
+            int upper = x - border, lower = x + border, right = y + border, left = y - border; // O(1)
+            int height = GetHeight(imageMatrix), width = GetWidth(imageMatrix), index = 0; // O(1)
 
             if (upper < 0)
             {
-                lower += 0 - upper;
-                upper = 0;
+                lower += 0 - upper; // O(1)
+                upper = 0; // O(1)
             }
             else if (lower >= height)
             {
-                upper -= lower - height;
-                lower = height - 1;
+                upper -= lower - height; // O(1)
+                lower = height - 1;  
             }
 
             if (left < 0)

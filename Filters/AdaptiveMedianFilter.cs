@@ -14,20 +14,20 @@ namespace Algorithms_Project.Filters
 
         public static byte[,] ImageFiltering(int maxWindowSize, bool countSort,byte[,] imageMatrix)
         {
-            int width = ImageOperations.GetWidth(imageMatrix);
+            int width = ImageOperations.GetWidth(imageMatrix); // O(1)
 
-            int height = ImageOperations.GetHeight(imageMatrix);
+            int height = ImageOperations.GetHeight(imageMatrix); // O(1)
 
-            byte[,] newImageMatrix = new byte[height, width];
+            byte[,] newImageMatrix = new byte[height, width]; // O(1) msh mot2kda
 
-            for (int x = 0; x < height; x++)
+            for (int x = 0; x < height; x++)  // O(height)
             {
-                for(int y = 0; y < width; y++)
+                for(int y = 0; y < width; y++) // O(width)
                 { 
 
-                    for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2)
+                    for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2) // O(maxWindowSize-minWindowSize+1)
                     {
-                        byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize);
+                        byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize); 
 
                         byte[] sortedPixels = sortPixels(pixels, countSort); 
                         
