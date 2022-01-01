@@ -50,7 +50,7 @@ namespace Algorithms_Project.Filters
                             if (windowSize >= maxWindowSize)
                             {
                                 
-                                byte neValue = 0;
+                                /*byte neValue = 0;
                                 for(int k = 0; k < sortedPixels.Length; k++)
                                 {
                                     if (sortedPixels[k] != (byte)0 && sortedPixels[k] != (byte)255)
@@ -63,7 +63,7 @@ namespace Algorithms_Project.Filters
                                 {
                                     newImageMatrix[x, y] = neValue;
                                 }
-                                else
+                                else*/
                                     newImageMatrix[x, y] = median;
                             }
                         }              
@@ -109,10 +109,12 @@ namespace Algorithms_Project.Filters
             int index = 1;
             for (int i = 3; i <= maxWindow; i += 2)
             {
+                byte[,] newImageMatrix = imageMatrix;
                 timeBefore = System.Environment.TickCount;
-                ImageFiltering(maxWindow,countSort, imageMatrix);
+                ImageFiltering(maxWindow,countSort, newImageMatrix);
                 timeAfter = System.Environment.TickCount;
                 totalTime = (timeAfter - timeBefore);
+                Console.WriteLine(i + " " + totalTime);
                 time[index++] = totalTime;
             }
             return time;
