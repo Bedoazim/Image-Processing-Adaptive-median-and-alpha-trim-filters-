@@ -54,7 +54,7 @@ namespace Algorithms_Project.Algorithms
         public static byte[] countingSort(byte[] pixels)
         {
             byte[] sortedPixels = new byte[pixels.Length];
-            int[] frequency=new int[260];
+            int[] frequency=new int[256];
             int index = 0;
             SortedSet<byte> uniquePixels = new SortedSet<byte>();
             for (int i = 0; i < pixels.Length; i++)

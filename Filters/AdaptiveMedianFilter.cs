@@ -47,8 +47,25 @@ namespace Algorithms_Project.Filters
                         else
                         {
                             windowSize++;
-                            if (windowSize >= maxWindowSize) 
+                            if (windowSize >= maxWindowSize)
+                            {
+                                
+                                byte neV = 0;
+                                for(int k = 0; k < sortedPixels.Length; k++)
+                                {
+                                    if (sortedPixels[k] != (byte)0 && sortedPixels[k] != (byte)255)
+                                    {
+                                        neV = sortedPixels[k];
+                                        break;
+                                    }
+                                }
+                                if (neV != (byte)0)
+                                {
+                                    newImageMatrix[x, y] = neV;
+                                }
+                                else
                                 newImageMatrix[x, y] = median;
+                            }
                         }              
                     }
                 }

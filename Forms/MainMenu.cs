@@ -134,20 +134,21 @@ namespace Algorithms_Project
             double[] countSortTime = new double[size];
             int index = 1;
             windowSizes[0] = selectingKthElementTime[0] = countSortTime[0] = 0;
-            
+            double timeBefore, totalTime;
             for (int i = 3; i <= maxWindowSize; i += 2)
             {
                 windowSizes[index] = i;
-                double timeBefore = System.Environment.TickCount;
-                byte[,] test = Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize, trimValue, true, imageMatrix);
-                double totalTime = (System.Environment.TickCount - timeBefore);
+                timeBefore = System.Environment.TickCount;
+                Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize, trimValue, true, imageMatrix);
+                totalTime = (System.Environment.TickCount - timeBefore);
                 countSortTime[index] = totalTime;
                 timeBefore = System.Environment.TickCount;
-                test = Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize,trimValue, false, imageMatrix);
+                Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize,trimValue, false, imageMatrix);
                 totalTime = (System.Environment.TickCount - timeBefore);
                 selectingKthElementTime[index] = totalTime;
                 index++;
             }
+
 
             ZGraph ZGF = new ZGraph("Alpha-Trim Mean filter Graph", "Window Size", "Time in ms");
             ZGF.add_curve("Time of Selecting Kth Elements", windowSizes, selectingKthElementTime, Color.Red);
