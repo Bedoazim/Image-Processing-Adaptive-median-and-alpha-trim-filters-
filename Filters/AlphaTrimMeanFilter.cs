@@ -13,7 +13,7 @@ namespace Algorithms_Project.Filters
     class AlphaTrimMeanFilter
     {
 
-        public static byte[,] ImageFiltering(int windowSize, int trimValue, bool countingSort, byte[,] imageMatrix)
+        public static byte[,] ImageFiltering(int windowSize, int trimValue, bool countingSort, byte[,] imageMatrix) // O( max( pixels.Length, maxPixel - minPixel, frequency[i], windowSize ^ 2  ) )
         {
             int width = ImageOperations.GetWidth(imageMatrix); // O(1)
 
@@ -27,15 +27,15 @@ namespace Algorithms_Project.Filters
                 {
                     byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix, x, y, windowSize); // O(windowSize ^ 2)
 
-                    byte[] middlePixels = removingTMaxAndMin(pixels, trimValue, countingSort);
+                    byte[] middlePixels = removingTMaxAndMin(pixels, trimValue, countingSort); // O( max(  pixels.Length, maxPixel - minPixel, frequency[i] ))
 
-                    newImageMatrix[x, y] = getMeanOfPixels(middlePixels);
+                    newImageMatrix[x, y] = getMeanOfPixels(middlePixels); //O(pixels.Length)
                 }
             }
 
             return newImageMatrix;
         }
-        private static byte[] removingTMaxAndMin(byte[] pixels, int trimValue, bool countingSort)
+        private static byte[] removingTMaxAndMin(byte[] pixels, int trimValue, bool countingSort) // O( max(  pixels.Length, maxPixel - minPixel, frequency[i] ))
         {
             byte[] remainingPixels = new byte[(pixels.Length) - (2 * trimValue)]; // O(1) not sure
             if (countingSort)
@@ -49,37 +49,37 @@ namespace Algorithms_Project.Filters
             }
             else
             {
-                remainingPixels = Algorithms.SelectingKthElemenet.smallest(pixels, trimValue);
-                remainingPixels = Algorithms.SelectingKthElemenet.largest(remainingPixels, trimValue);
+                remainingPixels = Algorithms.SelectingKthElemenet.smallest(pixels, trimValue);// O( max(  pixels.Length, maxPixel - minPixel, frequency[i] ))
+                remainingPixels = Algorithms.SelectingKthElemenet.largest(remainingPixels, trimValue); // O( max(pixels.Length, maxPixel - minPixel )
             }
-            return remainingPixels;
+            return remainingPixels; //O(1)
         }
-        private static byte getMeanOfPixels(byte[] pixels)
+        private static byte getMeanOfPixels(byte[] pixels) //O(pixels.Length)
         {
-            int meanOfPixels = 0;
-            for (int i = 0; i < pixels.Length; i++)
+            int meanOfPixels = 0;//O(1)
+            for (int i = 0; i < pixels.Length; i++) //O(pixels.Length)
             {
-                meanOfPixels += (int)pixels[i];
+                meanOfPixels += (int)pixels[i]; //O(1)
             }
-            meanOfPixels /= pixels.Length;
-            return (byte)meanOfPixels;
+            meanOfPixels /= pixels.Length; //O(1)
+            return (byte)meanOfPixels; //O(1)
         }
         public static double[] getTimeForGraph(int maxWindow, int trimValue, bool countSort, byte[,] imageMatrix)
         {
-            int size = ((maxWindow - 3) / 2) + 2;
-            double[] time = new double[size];
-            time[0] = 0;
-            int index = 1;
-            for (int i = 3; i <= maxWindow; i += 2)
+            int size = ((maxWindow - 3) / 2) + 2; //O(1)
+            double[] time = new double[size]; //O(1)
+            time[0] = 0; //O(1)
+            int index = 1; //O(1)
+            for (int i = 3; i <= maxWindow; i += 2) //O(maxWindow)
             {
-                byte[,] newImageMatrix = imageMatrix;
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-                ImageFiltering(maxWindow, trimValue, countSort, newImageMatrix);
-                stopwatch.Stop();
-                time[index++] = stopwatch.ElapsedMilliseconds;
+                byte[,] newImageMatrix = imageMatrix; //O(1) not sure
+                Stopwatch stopwatch = new Stopwatch(); //O(1)
+                stopwatch.Start(); //O(1)
+                ImageFiltering(maxWindow, trimValue, countSort, newImageMatrix); 
+                stopwatch.Stop(); //O(1)
+                time[index++] = stopwatch.ElapsedMilliseconds; //O(1)
             }
-            return time;
+            return time; //O(1)
         }
     }
 }

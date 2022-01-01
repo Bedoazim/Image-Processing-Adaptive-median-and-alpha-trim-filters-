@@ -8,7 +8,7 @@ namespace Algorithms_Project.Algorithms
 {
     class SelectingKthElemenet
     {
-        public static byte[] smallest(byte[] pixels,int k)
+        public static byte[] smallest(byte[] pixels,int k) // O( max(  pixels.Length, maxPixel - minPixel, frequency[i] ))
         {
             int [] frequency= new int[256]; // O(1) not sure
             byte[] selected = new byte[pixels.Length - k]; //O(1) not sure
@@ -46,7 +46,7 @@ namespace Algorithms_Project.Algorithms
             return selected; // O(1)
         }
 
-        public static byte[] largest(byte[] pixels,int k)
+        public static byte[] largest(byte[] pixels,int k) // O( max(pixels.Length, maxPixel - minPixel )
         {
             byte[] frequency = new byte[256]; // O(1)
             byte[] selected = new byte[pixels.Length - k];      // O(1)     
