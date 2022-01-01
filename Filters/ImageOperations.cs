@@ -107,7 +107,7 @@ namespace Algorithms_Project.Filters
             PicBox.Image = ImageBMP;
         }
 
-        public static byte[] constructWindowOfPixels(byte[,] imageMatrix, int x, int y, int windowSize)
+        public static byte[] constructWindowOfPixels(byte[,] imageMatrix, int x, int y, int windowSize) // O(windowSize*windowSize)
         {
             
             byte[] pixels = new byte[windowSize * windowSize]; // O(1) not sure
@@ -124,41 +124,41 @@ namespace Algorithms_Project.Filters
             else if (lower >= height)
             {
                 upper -= lower - height; // O(1)
-                lower = height - 1;  
+                lower = height - 1;  // O(1)
             }
 
             if (left < 0)
             {
-                right += 0 - left;
-                left = 0;
+                right += 0 - left; // O(1)
+                left = 0; // O(1)
             }
             else if (right >= width)
             {
-                left -= right - width;
-                right = width - 1;
+                left -= right - width; // O(1)
+                right = width - 1;  // O(1)
             }
 
-            for (int i = upper; i <= lower; i++)
+            for (int i = upper; i <= lower; i++) // O(lower-upper+1) windowsize
             {
-                for (int j = left; j <= right; j++)
+                for (int j = left; j <= right; j++) // O(right-left+1) windowsize
                 {
-                    pixels[index++] = imageMatrix[i, j];
+                    pixels[index++] = imageMatrix[i, j]; // O(1)
                 }
             }
-            return pixels;
+            return pixels; // O(1)
         }
 
-        public static double[] constructingArrayOfWindowSizes(int maxWindow)
+        public static double[] constructingArrayOfWindowSizes(int maxWindow) // O(maxWindow)
         {
-            int size=((maxWindow-3)/2)+2;
-            double[] windowSizes = new double[size];
-            windowSizes[0] = 0;
-            int index = 1;
-            for(int i = 3; i <= maxWindow; i+=2)
+            int size=((maxWindow-3)/2)+2; // O(1)
+            double[] windowSizes = new double[size]; // O(1) not sure
+            windowSizes[0] = 0; // O(1)
+            int index = 1; // O(1)
+            for (int i = 3; i <= maxWindow; i+=2) // O(maxWindow)
             {
-                windowSizes[index++] = i;
+                windowSizes[index++] = i; // O(1)
             }
-            return windowSizes;
+            return windowSizes; // O(1)
         } 
 
     }
