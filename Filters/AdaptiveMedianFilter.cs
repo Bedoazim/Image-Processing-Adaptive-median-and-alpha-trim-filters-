@@ -50,21 +50,21 @@ namespace Algorithms_Project.Filters
                             if (windowSize >= maxWindowSize)
                             {
                                 
-                                byte neV = 0;
+                                byte neValue = 0;
                                 for(int k = 0; k < sortedPixels.Length; k++)
                                 {
                                     if (sortedPixels[k] != (byte)0 && sortedPixels[k] != (byte)255)
                                     {
-                                        neV = sortedPixels[k];
+                                        neValue = sortedPixels[k];
                                         break;
                                     }
                                 }
-                                if (neV != (byte)0)
+                                if (neValue != (byte)0)
                                 {
-                                    newImageMatrix[x, y] = neV;
+                                    newImageMatrix[x, y] = neValue;
                                 }
                                 else
-                                newImageMatrix[x, y] = median;
+                                    newImageMatrix[x, y] = median;
                             }
                         }              
                     }
@@ -95,7 +95,7 @@ namespace Algorithms_Project.Filters
             if (countSort)
                 sortedPixels = Algorithms.Sort.countingSort(pixels);
             else
-                sortedPixels = Algorithms.Sort.quickSort(pixels, 0, pixels.Length);
+                sortedPixels = Algorithms.Sort.quickSort(pixels, 0, pixels.Length - 1);
 
             return sortedPixels;
         }

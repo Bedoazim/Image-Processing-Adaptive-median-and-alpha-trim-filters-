@@ -8,49 +8,38 @@ namespace Algorithms_Project.Algorithms
 {
     public static class Sort{
 
-        public static byte[] quickSort(byte[] pixels,int left, int right)
+        public static byte[] quickSort(byte[] pixels,int low, int high)
         {
-            int pivot;
-            if (left < right)
+            if (low < high)
             {
-                pivot = Partition(pixels, left, right);
-                if (pivot > 1)
+                int pivotPosition = Partition(pixels, low, high);
+                quickSort(pixels, low, pivotPosition - 1);
+                quickSort(pixels, pivotPosition + 1, high);
+            }
+            return pixels;   
+        }
+        private static int Partition(byte[] pixels, int low, int high)
+        {
+            byte pivot = pixels[high];
+            int lowWall = low;            
+            for(int i = low ; i < high; i++)
+            {
+                if(pixels[i] <= pivot)
                 {
-                    quickSort(pixels, left, pivot - 1);
-                }
-                if (pivot + 1 < right)
-                {
-                    quickSort(pixels, pivot + 1, right);
+                    Swap(pixels, i, lowWall);
+                    lowWall++;
                 }
             }
-            return pixels;
+            Swap(pixels, high, lowWall);
+            return lowWall;
         }
-        private static int Partition(byte[] pixels, int left, int right)
+        private static void Swap(byte[] pixels,int first, int second)
         {
-            byte pivot;
-            pivot = pixels[left];
-            while (true)
-            {
-                while (pixels[left] < pivot)
-                {
-                    left++;
-                }
-                while (pixels[right] > pivot)
-                {
-                    right--;
-                }
-                if (left < right)
-                {
-                    byte temp = pixels[right];
-                    pixels[right] = pixels[left];
-                    pixels[left] = temp;
-                }
-                else
-                {
-                    return right;
-                }
-            }
+            byte swap = pixels[first];
+            pixels[first] = pixels[second];
+            pixels[second] = swap;
         }
+
         public static byte[] countingSort(byte[] pixels)
         {
             byte[] sortedPixels = new byte[pixels.Length];
