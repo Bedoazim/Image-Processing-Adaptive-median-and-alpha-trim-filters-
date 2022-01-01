@@ -61,20 +61,20 @@ namespace Algorithms_Project.Algorithms
                 }
             }
             /* 
-             * Another implementation for counting sort in O(nLog(n)) which is preferred in small n (n < 197) *
+             * Another implementation for counting sort in O(log(uniquePixels.Length)*Log(uniquePixels.Length)) which is preferred in small n (n < 197) *
               
             if (pixels.Length < 197)
             {
-                SortedSet<byte> uniquePixels = new SortedSet<byte>();
-                for (int i = 0; i < pixels.Length; i++)
+                SortedSet<byte> uniquePixels = new SortedSet<byte>(); // O(1)
+                for (int i = 0; i < pixels.Length; i++) // O(pixels.Length)
                 {
-                    uniquePixels.Add(pixels[i]);
+                    uniquePixels.Add(pixels[i]); // O(log(uniquePixels.Length))
                 }
-                foreach (int i in uniquePixels)
+                foreach (int i in uniquePixels) // O(uniquePixels.Length)
                 {
-                    for (int j = 0; j < frequency[i]; j++)
+                    for (int j = 0; j < frequency[i]; j++) //O(frequancy[i])
                     {
-                        sortedPixels[index++] = (byte)i;
+                        sortedPixels[index++] = (byte)i; // O(1)
                     }
                 }
             }*/
