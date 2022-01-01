@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Algorithms_Project.Algorithms;
 
@@ -105,17 +106,18 @@ namespace Algorithms_Project.Filters
             int size = ((maxWindow - 3) / 2) + 2;
             double[] time = new double[size];
             time[0] = 0;
-            double timeBefore, timeAfter, totalTime;
             int index = 1;
             for (int i = 3; i <= maxWindow; i += 2)
             {
                 byte[,] newImageMatrix = imageMatrix;
-                timeBefore = System.Environment.TickCount;
-                ImageFiltering(maxWindow,countSort, newImageMatrix);
-                timeAfter = System.Environment.TickCount;
-                totalTime = (timeAfter - timeBefore);
-                time[index++] = totalTime;
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                ImageFiltering(maxWindow, countSort, newImageMatrix);
+                stopwatch.Stop();
+                time[index++] = stopwatch.ElapsedMilliseconds;
+                Console.Write(stopwatch.ElapsedMilliseconds + " ");
             }
+            Console.WriteLine();
             return time;
         }
     }

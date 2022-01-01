@@ -164,11 +164,14 @@ namespace Algorithms_Project
             {
                 int maxWindowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
+                int width = Algorithms_Project.Filters.ImageOperations.GetWidth(imageMatrix);
+                int height = Algorithms_Project.Filters.ImageOperations.GetHeight(imageMatrix);
+
                 if (pictureBox2.Image == null)
                 {
                     MessageBox.Show("Please insert image!");
                 }
-                else if (maxWindowSize < 3)
+                else if (maxWindowSize < 3 || maxWindowSize > Math.Min(height,width))
                 {
                     MessageBox.Show("Please enter valid window size!");
                 }
