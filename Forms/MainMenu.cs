@@ -50,9 +50,19 @@ namespace Algorithms_Project
             }
             else
             {
-                int maxWindowSize=int.Parse(medianMaxWindowSize.Text);
-                ImageOperations.DisplayImage(imageMatrix = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, medianCountingSort.Checked, imageMatrix)
-, pictureBox1);
+                int maxWindowSize = int.Parse(medianMaxWindowSize.Text);
+                if (pictureBox2.Image == null)
+                {
+                    MessageBox.Show("Please insert image!");
+                }
+                else if (maxWindowSize < 3)
+                {
+                    MessageBox.Show("Please enter valid window size!");
+                }
+                else
+                {
+                    ImageOperations.DisplayImage(imageMatrix = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, medianCountingSort.Checked, imageMatrix), pictureBox1);
+                }
             }
 
         }
@@ -75,7 +85,22 @@ namespace Algorithms_Project
             {
                 int windowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
-                ImageOperations.DisplayImage(imageMatrix = Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, imageMatrix), pictureBox1);
+                if (pictureBox2.Image == null)
+                {
+                    MessageBox.Show("Please insert image!");
+                }
+                else if (windowSize < 3)
+                {
+                    MessageBox.Show("Please enter valid window size!");
+                }
+                else if ((trimValue * 2) >= (windowSize * windowSize))
+                {
+                    MessageBox.Show("Please enter valid trim value!");
+                }
+                else
+                {
+                    ImageOperations.DisplayImage(imageMatrix = Filters.AlphaTrimMeanFilter.ImageFiltering(windowSize, trimValue, meanCountingSort.Checked, imageMatrix), pictureBox1);
+                }
             }
 
         }
@@ -97,63 +122,73 @@ namespace Algorithms_Project
 
         private void medianGraph_Click(object sender, EventArgs e)
         {
-            int maxWindowSize = int.Parse(medianMaxWindowSize.Text);
-            int size = ((maxWindowSize - 3) / 2) + 2;
-            double[] windowSizes = new double[size];
-            double[] quickSortTime = new double[size];
-            double[] countSortTime = new double[size];
-            int index = 1;
-            windowSizes[0] = quickSortTime[0] = countSortTime[0] = 0;
-            for (int i = 3; i <= maxWindowSize; i += 2)
-            {
-                windowSizes[index] = i;
-                double timeBefore = System.Environment.TickCount;
-                byte[,] test = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, true, imageMatrix);
-                double totalTime = (System.Environment.TickCount - timeBefore);
-                countSortTime[index] = totalTime;
-                timeBefore = System.Environment.TickCount;
-                test = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, false, imageMatrix);
-                totalTime = (System.Environment.TickCount - timeBefore);
-                quickSortTime[index] = totalTime;
-                index++;
+            if (medianMaxWindowSize.Text.Length == 0){
+                MessageBox.Show("Please enter the window size!");
             }
+            else {
+                int maxWindowSize = int.Parse(medianMaxWindowSize.Text);
+                if (pictureBox2.Image == null)
+                {
+                    MessageBox.Show("Please insert image!");
+                }
+                else if (maxWindowSize < 3)
+                {
+                    MessageBox.Show("Please enter valid window size!");
+                }
+                else
+                {
+                    byte[,] imageMatrix1 = imageMatrix;
+                    byte[,] imageMatrix2 = imageMatrix;
+                    double[] windowSizes = Algorithms_Project.Filters.ImageOperations.constructingArrayOfWindowSizes(maxWindowSize);
 
-            ZGraph ZGF = new ZGraph("Adaptive Median filter Graph", "Window Size", "Time in ms");
-            ZGF.add_curve("Time of Quick Sort", windowSizes, quickSortTime, Color.Red);
-            ZGF.add_curve("Time of Counting Sort", windowSizes, countSortTime, Color.Blue);
-            ZGF.Show();
+                    ZGraph ZGF = new ZGraph("Adaptive Median filter Graph", "Window Size", "Time in ms");
+                    ZGF.add_curve("Time of Quick Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, false, imageMatrix1), Color.Red);
+                    ZGF.add_curve("Time of Counting Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, true, imageMatrix2), Color.Blue);
+                    ZGF.Show();
+                }
+            }
+            
         }
 
         private void meanGraph_Click(object sender, EventArgs e)
         {
-            int maxWindowSize = int.Parse(meanWindowSize.Text);
-            int trimValue= int.Parse(meanTrimValue.Text);
-            int size = ((maxWindowSize - 3) / 2) + 2;
-            double[] windowSizes = new double[size];
-            double[] selectingKthElementTime = new double[size];
-            double[] countSortTime = new double[size];
-            int index = 1;
-            windowSizes[0] = selectingKthElementTime[0] = countSortTime[0] = 0;
-            double timeBefore, totalTime;
-            for (int i = 3; i <= maxWindowSize; i += 2)
+            if (meanWindowSize.Text.Length == 0)
             {
-                windowSizes[index] = i;
-                timeBefore = System.Environment.TickCount;
-                Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize, trimValue, true, imageMatrix);
-                totalTime = (System.Environment.TickCount - timeBefore);
-                countSortTime[index] = totalTime;
-                timeBefore = System.Environment.TickCount;
-                Filters.AlphaTrimMeanFilter.ImageFiltering(maxWindowSize,trimValue, false, imageMatrix);
-                totalTime = (System.Environment.TickCount - timeBefore);
-                selectingKthElementTime[index] = totalTime;
-                index++;
+                MessageBox.Show("Please enter the window size!");
             }
+            else if (meanTrimValue.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter the trim value!");
+            }
+            else
+            {
+                int maxWindowSize = int.Parse(meanWindowSize.Text);
+                int trimValue = int.Parse(meanTrimValue.Text);
+                if (pictureBox2.Image == null)
+                {
+                    MessageBox.Show("Please insert image!");
+                }
+                else if (maxWindowSize < 3)
+                {
+                    MessageBox.Show("Please enter valid window size!");
+                }
+                else if ((trimValue * 2) >= (maxWindowSize * maxWindowSize))
+                {
+                    MessageBox.Show("Please enter valid trim value!");
+                }
+                else
+                {
+                    byte[,] imageMatrix1 = imageMatrix;
+                    byte[,] imageMatrix2 = imageMatrix;
+                    double[] windowSizes = Algorithms_Project.Filters.ImageOperations.constructingArrayOfWindowSizes(maxWindowSize);
 
-
-            ZGraph ZGF = new ZGraph("Alpha-Trim Mean filter Graph", "Window Size", "Time in ms");
-            ZGF.add_curve("Time of Selecting Kth Elements", windowSizes, selectingKthElementTime, Color.Red);
-            ZGF.add_curve("Time of Counting Sort", windowSizes, countSortTime, Color.Blue);
-            ZGF.Show();
+                    ZGraph ZGF = new ZGraph("Alpha-Trim Mean filter Graph", "Window Size", "Time in ms");
+                    ZGF.add_curve("Time of Selecting Kth Elements", windowSizes, Algorithms_Project.Filters.AlphaTrimMeanFilter.getTimeForGraph(maxWindowSize, trimValue, false, imageMatrix1), Color.Red);
+                    ZGF.add_curve("Time of Counting Sort", windowSizes, Algorithms_Project.Filters.AlphaTrimMeanFilter.getTimeForGraph(maxWindowSize, trimValue, true, imageMatrix2), Color.Blue);
+                    ZGF.Show();
+                }
+            }
+            
         }
     }
 }

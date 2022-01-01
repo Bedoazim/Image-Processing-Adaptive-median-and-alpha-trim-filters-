@@ -99,5 +99,22 @@ namespace Algorithms_Project.Filters
 
             return sortedPixels;
         }
+
+        public static double[] getTimeForGraph(int maxWindow, bool countSort, byte[,] imageMatrix)
+        {
+            int size = ((maxWindow - 3) / 2) + 2;
+            double[] time = new double[size];
+            time[0] = 0;
+            double timeBefore, totalTime;
+            int index = 1;
+            for (int i = 3; i <= maxWindow; i += 2)
+            {
+                timeBefore = System.Environment.TickCount;
+                ImageFiltering(maxWindow,countSort, imageMatrix);
+                totalTime = (System.Environment.TickCount - timeBefore);
+                time[index++] = totalTime;
+            }
+            return time;
+        }
     }
 }

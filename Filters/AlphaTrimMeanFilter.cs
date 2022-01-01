@@ -63,5 +63,21 @@ namespace Algorithms_Project.Filters
             meanOfPixels /= pixels.Length;
             return (byte)meanOfPixels;
         }
+        public static double[] getTimeForGraph(int maxWindow, int trimValue, bool countSort, byte[,] imageMatrix)
+        {
+            int size = ((maxWindow - 3) / 2) + 2;
+            double[] time = new double[size];
+            time[0] = 0;
+            double timeBefore, totalTime;
+            int index = 1;
+            for (int i = 3; i <= maxWindow; i += 2)
+            {
+                timeBefore = System.Environment.TickCount;
+                ImageFiltering(maxWindow, trimValue, countSort, imageMatrix);
+                totalTime = (System.Environment.TickCount - timeBefore);
+                time[index++] = totalTime;
+            }
+            return time;
+        }
     }
 }

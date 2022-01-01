@@ -147,5 +147,19 @@ namespace Algorithms_Project.Filters
             }
             return pixels;
         }
+
+        public static double[] constructingArrayOfWindowSizes(int maxWindow)
+        {
+            int size=((maxWindow-3)/2)+2;
+            double[] windowSizes = new double[size];
+            windowSizes[0] = 0;
+            int index = 1;
+            for(int i = 3; i <= maxWindow; i+=2)
+            {
+                windowSizes[index++] = i;
+            }
+            return windowSizes;
+        } 
+
     }
 }
