@@ -15,21 +15,21 @@ namespace Algorithms_Project.Filters
 
         public static byte[,] ImageFiltering(int windowSize, int trimValue, bool countingSort, byte[,] imageMatrix)
         {
-            int width = ImageOperations.GetWidth(imageMatrix);
-            
-            int height = ImageOperations.GetHeight(imageMatrix);
+            int width = ImageOperations.GetWidth(imageMatrix); // O(1)
 
-            byte[,] newImageMatrix = new byte[height, width];
+            int height = ImageOperations.GetHeight(imageMatrix); // O(1)
 
-            for (int x = 0; x < height; x++)
+            byte[,] newImageMatrix = new byte[height, width]; // O(1) not sure
+
+            for (int x = 0; x < height; x++) // O(height)
             {
-                for (int y = 0; y < width; y++)
+                for (int y = 0; y < width; y++) // O(width)
                 {
-                    byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix, x, y, windowSize);
+                    byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix, x, y, windowSize); // O(windowSize ^ 2)
 
                     byte[] middlePixels = removingTMaxAndMin(pixels, trimValue, countingSort);
 
-                    newImageMatrix[x, y] =  getMeanOfPixels(middlePixels);
+                    newImageMatrix[x, y] = getMeanOfPixels(middlePixels);
                 }
             }
 
@@ -37,20 +37,20 @@ namespace Algorithms_Project.Filters
         }
         private static byte[] removingTMaxAndMin(byte[] pixels, int trimValue, bool countingSort)
         {
-            byte[] remainingPixels=new byte[(pixels.Length)-(2*trimValue)];
+            byte[] remainingPixels = new byte[(pixels.Length) - (2 * trimValue)]; // O(1) not sure
             if (countingSort)
             {
-                byte[] sortedPixels = Algorithms.Sort.countingSort(pixels);
-                int index = 0;
-                for(int i=trimValue; i<sortedPixels.Length-trimValue; i++)
+                byte[] sortedPixels = Algorithms.Sort.countingSort(pixels); //O(max(pixels.Length, maxPixel))
+                int index = 0; //O(1)
+                for (int i = trimValue; i < sortedPixels.Length - trimValue; i++) //O( sortedPixels.length - 2 * trimValue )
                 {
-                    remainingPixels[index++] = sortedPixels[i]; 
-                } 
+                    remainingPixels[index++] = sortedPixels[i]; //O(1)
+                }
             }
             else
             {
-                remainingPixels = Algorithms.SelectingKthElemenet.smallest(pixels,trimValue);
-                remainingPixels = Algorithms.SelectingKthElemenet.largest(remainingPixels,trimValue);
+                remainingPixels = Algorithms.SelectingKthElemenet.smallest(pixels, trimValue);
+                remainingPixels = Algorithms.SelectingKthElemenet.largest(remainingPixels, trimValue);
             }
             return remainingPixels;
         }
