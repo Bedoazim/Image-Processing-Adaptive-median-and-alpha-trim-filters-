@@ -68,13 +68,14 @@ namespace Algorithms_Project.Filters
             int size = ((maxWindow - 3) / 2) + 2;
             double[] time = new double[size];
             time[0] = 0;
-            double timeBefore, totalTime;
+            double timeBefore, timeAfter, totalTime;
             int index = 1;
             for (int i = 3; i <= maxWindow; i += 2)
             {
                 timeBefore = System.Environment.TickCount;
                 ImageFiltering(maxWindow, trimValue, countSort, imageMatrix);
-                totalTime = (System.Environment.TickCount - timeBefore);
+                timeAfter= System.Environment.TickCount;
+                totalTime = (timeAfter - timeBefore);
                 time[index++] = totalTime;
             }
             return time;
