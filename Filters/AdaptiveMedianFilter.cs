@@ -34,8 +34,9 @@ namespace Algorithms_Project.Filters
 
                         byte[] sortedPixels = sortPixels(pixels, countSort); // O((pixels.Length)*(pixels.Length))
 
+                                               byte median = getMedianPixel(sortedPixels); // O(1)
 
-                        byte median = getMedianPixel(sortedPixels); // O(1)
+                        //byte median = Algorithms_Project.Algorithms.SuperSort.getMedian(pixels, (pixels.Length / 2) + 1, 0, (pixels.Length - 1));
                         
                         if (!isNoisyPixel(median, sortedPixels)) // O(1)
                         {

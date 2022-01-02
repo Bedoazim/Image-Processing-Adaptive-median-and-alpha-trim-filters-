@@ -34,7 +34,7 @@ namespace Algorithms_Project.Algorithms
             Swap(pixels, high, lowWall);  // O(1)
             return lowWall;  // O(1)
         }
-        private static void Swap(byte[] pixels,int first, int second)
+        public static void Swap(byte[] pixels,int first, int second)
         {
             byte swap = pixels[first]; // O(1)
             pixels[first] = pixels[second];  // O(1)

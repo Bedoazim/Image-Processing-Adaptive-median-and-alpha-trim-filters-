@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\SelectingKthElemenet.cs" />
+    <Compile Include="Algorithms\SuperSort.cs" />
     <Compile Include="Filters\AdaptiveMedianFilter.cs" />
     <Compile Include="Filters\AlphaTrimMeanFilter.cs" />
     <Compile Include="Filters\ImageOperations.cs" />
