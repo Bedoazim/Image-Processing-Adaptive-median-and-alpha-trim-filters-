@@ -24,7 +24,7 @@ namespace Algorithms_Project.Algorithms
             }
             else
             {
-                return getMedian(pixels, mid, expectedMedianPosition + 1, high);
+                return getMedian(pixels, mid-pos, expectedMedianPosition + 1, high);
             }
 
         }

@@ -45,6 +45,7 @@
             this.meanCountingSort = new System.Windows.Forms.CheckBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.medianGraph = new System.Windows.Forms.Button();
+            this.superSort = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -226,11 +227,24 @@
             this.medianGraph.UseVisualStyleBackColor = true;
             this.medianGraph.Click += new System.EventHandler(this.medianGraph_Click);
             // 
+            // superSort
+            // 
+            this.superSort.AutoSize = true;
+            this.superSort.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.superSort.Location = new System.Drawing.Point(1285, 636);
+            this.superSort.Name = "superSort";
+            this.superSort.Size = new System.Drawing.Size(94, 24);
+            this.superSort.TabIndex = 22;
+            this.superSort.Text = "Super sort";
+            this.superSort.UseVisualStyleBackColor = true;
+            this.superSort.CheckedChanged += new System.EventHandler(this.superSort_CheckedChanged);
+            // 
             // mainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1479, 781);
+            this.Controls.Add(this.superSort);
             this.Controls.Add(this.medianGraph);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.meanCountingSort);
@@ -277,6 +291,7 @@
         private System.Windows.Forms.CheckBox meanCountingSort;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button medianGraph;
+        private System.Windows.Forms.CheckBox superSort;
     }
 }
 

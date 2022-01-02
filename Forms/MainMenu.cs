@@ -44,24 +44,22 @@ namespace Algorithms_Project
             {
                 MessageBox.Show("Please enter the max window size!");
             }
-            else if (medianCountingSort.Checked.Equals(medianQuickSort.Checked))
-            {
-                MessageBox.Show("Please select one sorting algorithm!");
-            }
             else
             {
                 int maxWindowSize = int.Parse(medianMaxWindowSize.Text);
+                int width = Algorithms_Project.Filters.ImageOperations.GetWidth(imageMatrix);
+                int height = Algorithms_Project.Filters.ImageOperations.GetHeight(imageMatrix);
                 if (pictureBox2.Image == null)
                 {
                     MessageBox.Show("Please insert image!");
                 }
-                else if (maxWindowSize < 3)
+                else if (maxWindowSize < 3 || maxWindowSize > Math.Min(height,width) )
                 {
                     MessageBox.Show("Please enter valid window size!");
                 }
                 else
                 {
-                    ImageOperations.DisplayImage(imageMatrix = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, medianCountingSort.Checked, imageMatrix), pictureBox1);
+                    ImageOperations.DisplayImage(imageMatrix = Filters.AdaptiveMedianFilter.ImageFiltering(maxWindowSize, medianCountingSort.Checked, imageMatrix,superSort.Checked), pictureBox1);
                 }
             }
 
@@ -85,11 +83,13 @@ namespace Algorithms_Project
             {
                 int windowSize = int.Parse(meanWindowSize.Text);
                 int trimValue = int.Parse(meanTrimValue.Text);
+                int width = Algorithms_Project.Filters.ImageOperations.GetWidth(imageMatrix);
+                int height = Algorithms_Project.Filters.ImageOperations.GetHeight(imageMatrix);
                 if (pictureBox2.Image == null)
                 {
                     MessageBox.Show("Please insert image!");
                 }
-                else if (windowSize < 3)
+                else if (windowSize < 3 || windowSize > Math.Min(height, width))
                 {
                     MessageBox.Show("Please enter valid window size!");
                 }
@@ -142,8 +142,9 @@ namespace Algorithms_Project
                     double[] windowSizes = Algorithms_Project.Filters.ImageOperations.constructingArrayOfWindowSizes(maxWindowSize);
 
                     ZGraph ZGF = new ZGraph("Adaptive Median filter Graph", "Window Size", "Time in ms");
-                    ZGF.add_curve("Time of Quick Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, false, imageMatrix1), Color.Red);
-                    ZGF.add_curve("Time of Counting Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, true, imageMatrix2), Color.Blue);
+                    ZGF.add_curve("Time of Quick Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, false, imageMatrix1,false), Color.Red);
+                    ZGF.add_curve("Time of Counting Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, true, imageMatrix2,false), Color.Blue);
+                    ZGF.add_curve("Time of Super Sort", windowSizes, Filters.AdaptiveMedianFilter.getTimeForGraph(maxWindowSize, false, imageMatrix2, true), Color.Yellow);
                     ZGF.Show();
                 }
             }
@@ -192,6 +193,11 @@ namespace Algorithms_Project
                 }
             }
             
+        }
+
+        private void superSort_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

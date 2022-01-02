@@ -15,7 +15,7 @@ namespace Algorithms_Project.Filters
         // O((height * width)*((maxWindowSize - minWindowSize + 1))*(windowSize * windowSize)*((pixels.Length)*(pixels.Length)))
         // Counting Sort
         // O((height * width)*((maxWindowSize - minWindowSize + 1))*(windowSize * windowSize)*(O(pixels.Length + maxPixel - minPixel)))
-        public static byte[,] ImageFiltering(int maxWindowSize, bool countSort,byte[,] imageMatrix)
+        public static byte[,] ImageFiltering(int maxWindowSize, bool countSort,byte[,] imageMatrix,bool superSort)
         {
             int width = ImageOperations.GetWidth(imageMatrix); // O(1)
 
@@ -31,16 +31,25 @@ namespace Algorithms_Project.Filters
                     for (int windowSize = minWindowSize; windowSize <= maxWindowSize; windowSize+=2) // O(maxWindowSize - minWindowSize + 1)
                     {
                         byte[] pixels = ImageOperations.constructWindowOfPixels(imageMatrix,x,y,windowSize); // O(windowSize*windowSize)
-
-                        byte[] sortedPixels = sortPixels(pixels, countSort); // O((pixels.Length)*(pixels.Length))
-
-                                               byte median = getMedianPixel(sortedPixels); // O(1)
-
-                        //byte median = Algorithms_Project.Algorithms.SuperSort.getMedian(pixels, (pixels.Length / 2) + 1, 0, (pixels.Length - 1));
-                        
-                        if (!isNoisyPixel(median, sortedPixels)) // O(1)
+                        byte minPixel, maxPixel,median;
+                        if (!superSort)
                         {
-                            if (isNoisyPixel(imageMatrix[x, y], sortedPixels)) // O(1)
+                            byte[] sortedPixels = sortPixels(pixels, countSort); // O((pixels.Length)*(pixels.Length))
+                            median = getMedianPixel(sortedPixels); // O(1)
+                            maxPixel=sortedPixels[sortedPixels.Length-1];
+                            minPixel=sortedPixels[0];
+                        }
+                        else
+                        {
+                            median = Algorithms_Project.Algorithms.SuperSort.getMedian(pixels, (pixels.Length / 2) + 1, 0, (pixels.Length - 1));
+                            byte[] minAndMax= getMinAndMaxPixels(pixels);
+                            minPixel=minAndMax[0];
+                            maxPixel=minAndMax[1];
+                        }
+
+                        if (!isNoisyPixel(median, minPixel,maxPixel)) // O(1)
+                        {
+                            if (isNoisyPixel(imageMatrix[x, y], minPixel,maxPixel)) // O(1)
                             {
                                 newImageMatrix[x, y] = median; // O(1)
                             }
@@ -87,11 +96,22 @@ namespace Algorithms_Project.Filters
             }
             return pixels[med]; // O(1)
         } 
-        private static bool isNoisyPixel(byte pixel,byte[] pixels) // O(1)
+        private static bool isNoisyPixel(byte pixel,byte minPixel,byte maxPixel) // O(1)
         {
-            byte minPixel = pixels[pixels.Length-1]; // O(1)
-            byte maxPixel = pixels[0]; // O(1)
             return (pixel == minPixel || pixel == maxPixel); // O(1)
+        }
+        private static byte[] getMinAndMaxPixels(byte[] pixels)
+        {
+            byte maxPixel = 0,minPixel=255;
+            byte[] minAndMaxPixels = new byte[2];
+            for(int i = 0; i < pixels.Length; i++)
+            {
+                minPixel = Math.Min(pixels[i],minPixel);
+                maxPixel = Math.Max(pixels[i],maxPixel);
+            }
+            minAndMaxPixels[0] = minPixel;
+            minAndMaxPixels[1] = maxPixel;
+            return minAndMaxPixels;
         }
         private static byte[] sortPixels(byte[] pixels,bool countSort) 
         {
@@ -105,7 +125,7 @@ namespace Algorithms_Project.Filters
             return sortedPixels; // O(1)
         }
 
-        public static double[] getTimeForGraph(int maxWindow, bool countSort, byte[,] imageMatrix)
+        public static double[] getTimeForGraph(int maxWindow, bool countSort, byte[,] imageMatrix,bool superSort)
         {
             int size = ((maxWindow - 3) / 2) + 2; // O(1)
             double[] time = new double[size]; // O(1)
@@ -117,7 +137,7 @@ namespace Algorithms_Project.Filters
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
                 // O((height * width)*((maxWindowSize - minWindowSize + 1))*(windowSize * windowSize)*((pixels.Length)*(pixels.Length)))
-                ImageFiltering(maxWindow, countSort, newImageMatrix); 
+                ImageFiltering(maxWindow, countSort, newImageMatrix,superSort); 
                 stopwatch.Stop();
                 time[index++] = stopwatch.ElapsedMilliseconds; // O(1)
             }
